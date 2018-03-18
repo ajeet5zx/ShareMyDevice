@@ -1,0 +1,59 @@
+package com.singhnextjuggernaut.ajeetkumar.sharemydevice.data;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+public class ResponseMessage {
+
+    @SerializedName("message")
+    @Expose
+    private String message;
+    @SerializedName("status")
+    @Expose
+    private Integer status;
+
+    /**
+     * No args constructor for use in serialization
+     *
+     */
+    public ResponseMessage() {
+    }
+
+    /**
+     *
+     * @param message
+     * @param status
+     */
+    public ResponseMessage(String message, Integer status) {
+        super();
+        this.message = message;
+        this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +'\''+
+                "  message : " + message +" ," +
+                "  status : " + status +
+                "}";
+    }
+
+}
