@@ -9,23 +9,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.ResponseMessage;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.remote.APIService;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.remote.ApiUtils;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiInterface;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+
 
 public class LoginActivity extends AppCompatActivity {
 
     private TextView emailText,passwordText;
     Button loginButton;
-    private APIService mAPIService;
+    ApiInterface apiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         passwordText = (EditText) findViewById(R.id.loginPassword);
         loginButton = (Button) findViewById(R.id.loginButton);
 
-        mAPIService = ApiUtils.getAPIService();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,32 +43,28 @@ public class LoginActivity extends AppCompatActivity {
                 final String email = emailText.getText().toString().trim();
                 final String password = passwordText.getText().toString().trim();
                 if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
-                    Log.d("Onclick","2");
-                    login(email,password);
+                    UserData userData = new UserData();
+                    userData.setEmail(email);
+                    userData.setPassword(password);
+                    userData.setDeviceType(AppConstant.DEVICE_TYPE);
+                    userData.setDeviceToken("qAFWhgqEhbWRnhjWRhnWRhwerhnwene");
+                    apiInterface = ApiCaller.getApiInterface();
+                    Call<Data> call = apiInterface.login(userData);
+                    call.enqueue(new Callback<Data>() {
+                        @Override
+                        public void onResponse(Call<Data> call, Response<Data> response) {
+                            Log.d("Response",response.body().toString());
+                        }
+
+                        @Override
+                        public void onFailure(Call<Data> call, Throwable t) {
+                            Log.d("err",t.getMessage());
+                        }
+                    });
                 }
             }
         });
     }
 
-    public void login(String email, String password) {
-        mAPIService.post("login",email, password, "GBdhbfndfjnfnjdfnfnfnfhnsrfnsrfn", "Android").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Data>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d("ERR",e.getMessage());
-                    }
-
-                    @Override
-                    public void onNext(Data data) {
-                        Log.d("Responce",data.toString());
-                    }
-                });
-
-    }
 
 }

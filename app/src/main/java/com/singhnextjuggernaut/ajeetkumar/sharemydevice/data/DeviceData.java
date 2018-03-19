@@ -2,7 +2,6 @@ package com.singhnextjuggernaut.ajeetkumar.sharemydevice.data;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class DeviceData {
 
@@ -164,18 +163,19 @@ public class DeviceData {
         this.v = v;
     }
 
+
     @Override
     public String toString() {
         return "{" +
-                "  ownerId : " + ownerId +" ," + '\'' +
-                "  id : " + id +" ," +
-                "  assigneeId : " + assigneeId +" ," +
-                "  isAvailable : " + isAvailable +" ," +
-                "  sharedCount : " + sharedCount +" ," +
-                "  name : " + name +" ," +
-                "  os : " + os +" ," +
-                "  version : " + version +" ," +
-                "  imei : " + imei +" ," +
-                "  stickerNo : " + stickerNo +
-                "}";
+                "  ownerId : '" + ownerId +"' ," +
+                "  id : '" + id +"' ," +
+                "  assigneeId : '" + assigneeId +"' ," +
+                "  isAvailable : '" + isAvailable +"' ," +
+                "  sharedCount : '" + sharedCount +"' ," +
+                "  name : '" + name +"' ," +
+                "  os : '" + os +"' ," +
+                "  version : '" + version +" '," +
+                "  imei : '" + imei +"' ," +
+                "  stickerNo : '" + stickerNo +
+                "' }";
     }}

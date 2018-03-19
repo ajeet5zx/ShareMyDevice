@@ -2,7 +2,6 @@ package com.singhnextjuggernaut.ajeetkumar.sharemydevice.data;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class UserData {
 
@@ -24,15 +23,29 @@ public class UserData {
     @SerializedName("__v")
     @Expose
     private Integer v;
-    @SerializedName("forgot_password_token")
+    @SerializedName("password")
     @Expose
-    private String forgotPasswordToken;
+    private String password;
+    @SerializedName("deviceType")
+    @Expose
+    private String deviceType;
+    @SerializedName("deviceToken")
+    @Expose
+    private String deviceToken;
 
     /**
      * No args constructor for use in serialization
      *
      */
     public UserData() {
+    }
+
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType;
+    }
+
+    public void setDeviceToken(String deviceToken) {
+        this.deviceToken = deviceToken;
     }
 
     /**
@@ -42,10 +55,12 @@ public class UserData {
      * @param lastName
      * @param deviceCount
      * @param email
-     * @param forgotPasswordToken
+     * @param password
      * @param firstName
+     * @param deviceType
+     * @param deviceToken
      */
-    public UserData(Integer deviceCount, String id, String firstName, String lastName, String email, Integer v, String forgotPasswordToken) {
+    public UserData(Integer deviceCount, String id, String firstName, String lastName, String email, Integer v, String password, String deviceType, String deviceToken) {
         super();
         this.deviceCount = deviceCount;
         this.id = id;
@@ -53,7 +68,10 @@ public class UserData {
         this.lastName = lastName;
         this.email = email;
         this.v = v;
-        this.forgotPasswordToken = forgotPasswordToken;
+        this.password = password;
+        this.deviceType = deviceType;
+        this.deviceToken = deviceToken;
+
     }
 
     public Integer getDeviceCount() {
@@ -104,23 +122,19 @@ public class UserData {
         this.v = v;
     }
 
-    public String getForgotPasswordToken() {
-        return forgotPasswordToken;
-    }
+    public String getPassword() { return password; }
 
-    public void setForgotPasswordToken(String forgotPasswordToken) {
-        this.forgotPasswordToken = forgotPasswordToken;
-    }
+    public void setPassword(String password) { this.password = password; }
 
     @Override
     public String toString() {
         return "{"+
                 "  deviceCount : " + deviceCount +" ," +
-                "  id : " + id +" ," + '\'' +
-                "  firstName : " + firstName +" ," +
-                "  lastName : " + lastName +" ," +
-                "  email : " + email +
-                "}";
+                "  id : '" + id +"' ," +
+                "  firstName : '" + firstName +"' ," +
+                "  lastName : '" + lastName +"' ," +
+                "  email : '" + email +
+                "' }";
     }
 
 }

@@ -3,7 +3,6 @@ package com.singhnextjuggernaut.ajeetkumar.sharemydevice.data;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Data {
 
@@ -65,7 +64,7 @@ public class Data {
         String deviceString="";
         for(int i=0;i<deviceData.size();i++) {
             deviceString+=deviceData.get(i).toString();
-            if(i!=deviceData.size()-1) {
+            if(i<deviceData.size()-1) {
                 deviceString+=",";
             }
         }
@@ -73,10 +72,12 @@ public class Data {
     }
 
     @Override
+
+
     public String toString() {
         return "{"+
-                "  accessToken : " + accessToken +" ," +
-                "  userData : " + userData.toString() +" ," + '\'' +
+                "  accessToken : '" + accessToken +"' ," +
+                "  userData : " + userData.toString() +" ," +
                 "  deviceData : [" + getDeviceDataString(deviceData) + "]" +
                 "}";
     }
