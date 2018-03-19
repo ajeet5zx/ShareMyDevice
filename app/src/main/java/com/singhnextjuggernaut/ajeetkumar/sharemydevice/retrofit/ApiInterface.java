@@ -11,7 +11,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 /**
- * Created by rahul on 19/3/18. ss
+ * Created by rahul on 19/3/18.
  */
 
 public interface ApiInterface {
