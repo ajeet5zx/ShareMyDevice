@@ -8,11 +8,10 @@ import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 /**
- * Created by rahul on 19/3/18.
+ * Created by rahul on 19/3/18. ss
  */
 
 public interface ApiInterface {
