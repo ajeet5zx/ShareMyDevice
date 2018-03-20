@@ -8,14 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiInterface;
 
+import io.paperdb.Paper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Paper.init(this);
         setContentView(R.layout.activity_login);
         emailText = (EditText) findViewById(R.id.loginEmail);
         passwordText = (EditText) findViewById(R.id.loginPassword);
@@ -53,7 +57,12 @@ public class LoginActivity extends AppCompatActivity {
                     call.enqueue(new Callback<Data>() {
                         @Override
                         public void onResponse(Call<Data> call, Response<Data> response) {
-                            Log.d("Response",response.body().toString());
+                            if(response.isSuccessful()) {
+                                //Log.d("Token",response.body().getAccessToken());
+                                CommonData.saveAccessToken(response.body().getAccessToken());
+                                CommonData.saveRegisterationData(response.body());
+                                Log.d("Paper Data",CommonData.getRegisterationData().toString());
+                            }
                         }
 
                         @Override
