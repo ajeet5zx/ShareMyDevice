@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.singhnextjuggernaut.ajeetkumar.sharemydevice.Main2Activity">
+    tools:context="com.singhnextjuggernaut.ajeetkumar.sharemydevice.Register">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,7 +32,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:padding="10dp"
-                    app:srcCompat="@drawable/ic_smartphone1" />
+                    app:srcCompat="@drawable/ic_smartphone1"
+                    tools:ignore="VectorDrawableCompat" />
             </LinearLayout>
 
             <LinearLayout
@@ -70,7 +71,7 @@
                             android:layout_marginLeft="22dp"
                             android:layout_marginRight="20dp"
                             android:paddingTop="10dp"
-                            android:text="FULL NAME" />
+                            android:text="NAME" />
 
                         <EditText
                             android:id="@+id/registerName"
