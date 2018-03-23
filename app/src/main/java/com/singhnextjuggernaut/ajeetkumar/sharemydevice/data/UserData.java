@@ -11,12 +11,9 @@ public class UserData {
     @SerializedName("_id")
     @Expose
     private String id;
-    @SerializedName("first_name")
+    @SerializedName("name")
     @Expose
-    private String firstName;
-    @SerializedName("last_name")
-    @Expose
-    private String lastName;
+    private String name;
     @SerializedName("email")
     @Expose
     private String email;
@@ -52,20 +49,18 @@ public class UserData {
      *
      * @param id
      * @param v
-     * @param lastName
      * @param deviceCount
      * @param email
      * @param password
-     * @param firstName
+     * @param name
      * @param deviceType
      * @param deviceToken
      */
-    public UserData(Integer deviceCount, String id, String firstName, String lastName, String email, Integer v, String password, String deviceType, String deviceToken) {
+    public UserData(Integer deviceCount, String id, String name, String email, Integer v, String password, String deviceType, String deviceToken) {
         super();
         this.deviceCount = deviceCount;
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.email = email;
         this.v = v;
         this.password = password;
@@ -90,20 +85,12 @@ public class UserData {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String firstName) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -131,8 +118,7 @@ public class UserData {
         return "{"+
                 "  deviceCount : " + deviceCount +" ," +
                 "  id : '" + id +"' ," +
-                "  firstName : '" + firstName +"' ," +
-                "  lastName : '" + lastName +"' ," +
+                "  name : '" + name +"' ," +
                 "  email : '" + email +
                 "' }";
     }
