@@ -1,4 +1,22 @@
 <resources>
     <string name="app_name">ShareMyDevice</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="msg_wifi_enabled">wifi_enabled</string>
+    <string name="msg_mobile_data_enabled">mobile_data_enabled</string>
+    <string name="msg_not_connected_to_internet">not_connected_to_internet</string>
+    <string name="error_password_mismatch">error_password_mismatch</string>
+    <string name="error_email_field_empty">error_email_field_empty</string>
+    <string name="error_invalid_email">error_invalid_email</string>
+    <string name="error_confirm_password_field_empty">error_confirm_password_field_empty</string>
+    <string name="error_password_field_empty">error_password_field_empty</string>
+    <string name="error_password_must_be_greater_than_5_character">error_password_must_be_greater_than_5_character</string>
+    <string name="error_phone_number_field_empty">error_phone_number_field_empty</string>
+    <string name="error_invalid_phone_number">error_invalid_phone_number</string>
+    <string name="error_first_name_field_empty">error_first_name_field_empty</string>
+    <string name="error_last_name_field_empty">error_last_name_field_empty</string>
+    <string name="error_first_name_special_number_character">error_first_name_special_number_character</string>
+    <string name="error_last_name_special_number_character">error_last_name_special_number_character</string>
+    <string name="error_first_name_two_character_long">error_first_name_two_character_long</string>
+    <string name="error_last_name_two_character_long">error_last_name_two_character_long</string>
+    <string name="text_ok">OK</string>
 </resources>

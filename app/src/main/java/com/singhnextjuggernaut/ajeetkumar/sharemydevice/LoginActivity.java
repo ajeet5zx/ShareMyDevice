@@ -1,9 +1,12 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,10 +16,13 @@ import android.widget.Toast;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.ResponseMessage;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiInterface;
+
+import java.util.zip.Inflater;
 
 import io.paperdb.Paper;
 import retrofit2.Call;
@@ -27,8 +33,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private TextView emailText,passwordText;
-    Button loginButton;
-    ApiInterface apiInterface;
+    Button loginButton,forgotpassButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +41,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         emailText = (EditText) findViewById(R.id.loginEmail);
         passwordText = (EditText) findViewById(R.id.loginPassword);
-        loginButton = (Button) findViewById(R.id.loginButton);
-
+        loginButton = findViewById(R.id.loginButton);
+        forgotpassButton = findViewById(R.id.forgotPassword);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,8 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                     userData.setPassword(password);
                     userData.setDeviceType(AppConstant.DEVICE_TYPE);
                     userData.setDeviceToken("qAFWhgqEhbWRnhjWRhnWRhwerhnwene");
-                    apiInterface = ApiCaller.getApiInterface();
-                    Call<Data> call = apiInterface.login(userData);
+                    Call<Data> call = ApiCaller.getApiInterface().login(userData);
                     call.enqueue(new Callback<Data>() {
                         @Override
                         public void onResponse(Call<Data> call, Response<Data> response) {
@@ -61,6 +65,8 @@ public class LoginActivity extends AppCompatActivity {
                                 CommonData.saveAccessToken(response.body().getAccessToken());
                                 CommonData.saveRegisterationData(response.body());
                                 Log.d("Paper Data",CommonData.getRegisterationData().toString());
+                            } else {
+                                //
                             }
                         }
 
@@ -70,6 +76,35 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
                 }
+            }
+        });
+
+        forgotpassButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                LayoutInflater inflater = LoginActivity.this.getLayoutInflater();
+                final View forgotpasswordView = inflater.inflate(R.layout.forgot_password_diolog, null);
+                builder.setView(forgotpasswordView)
+                .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        EditText email = (EditText) forgotpasswordView.findViewById(R.id.forgotPasswordEmail);
+                        final String email_t = email.getText().toString().trim();
+                        if(!TextUtils.isEmpty(email_t)) {
+                            UserData userData = new UserData();
+                            userData.setEmail(email_t);
+                        } else {
+                            //email is empty
+                        }
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+
             }
         });
     }
