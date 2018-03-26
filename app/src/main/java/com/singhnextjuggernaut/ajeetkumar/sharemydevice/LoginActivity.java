@@ -94,6 +94,33 @@ public class LoginActivity extends AppCompatActivity {
                         if(!TextUtils.isEmpty(email_t)) {
                             UserData userData = new UserData();
                             userData.setEmail(email_t);
+                            Call<ResponseMessage> call = ApiCaller.getApiInterface().forgotpassword(userData);
+                            call.enqueue(new Callback<ResponseMessage>() {
+                                @Override
+                                public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
+                                    if(response.isSuccessful()) {
+                                        Log.d("Responce",response.body().toString());
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                        builder.setMessage(response.body().getMessage())
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+
+                                    } else {
+                                        //respose is unsecessful
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseMessage> call, Throwable t) {
+                                    Log.d("err",t.getMessage());
+                                }
+                            });
+
                         } else {
                             //email is empty
                         }
@@ -103,7 +130,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
                     }
-                });
+                })
+                .show();
 
             }
         });
