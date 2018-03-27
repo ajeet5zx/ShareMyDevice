@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "409269427577",
+    "firebase_url": "https://sharemydevice-fd3fd.firebaseio.com",
+    "project_id": "sharemydevice-fd3fd",
+    "storage_bucket": "sharemydevice-fd3fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409269427577:android:1cf1d45e0e65a22b",
+        "android_client_info": {
+          "package_name": "com.singhnextjuggernaut.ajeetkumar.sharemydevice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409269427577-3l6uhpsvfj6dlplhr8pdle36co9dag3b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2772Rp0IdW_2kThkDLmi8aN9IxvLmrrE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
