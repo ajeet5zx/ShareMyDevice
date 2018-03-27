@@ -8,11 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.Validations.Utils;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.utils.Validations.Utils;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
 
 import retrofit2.Call;

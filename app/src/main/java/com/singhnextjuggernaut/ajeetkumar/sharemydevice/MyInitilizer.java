@@ -2,6 +2,8 @@ package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
 import android.app.Application;
 
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.utils.Foreground;
+
 import io.paperdb.Paper;
 
 /**
@@ -13,5 +15,6 @@ public class MyInitilizer extends Application {
     public void onCreate() {
         super.onCreate();
         Paper.init(this);
+        Foreground.init(this);
     }
 }

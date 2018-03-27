@@ -19,4 +19,11 @@
     <string name="error_first_name_two_character_long">error_first_name_two_character_long</string>
     <string name="error_last_name_two_character_long">error_last_name_two_character_long</string>
     <string name="text_ok">OK</string>
+    <string name="log_fcm_message_id">fcm_message_id</string>
+    <string name="log_fcm_notification_message">fcm_notification_message</string>
+    <string name="log_fcm_data">fcm_data</string>
+    <string name="log_fcm_data_message">fcm_data_message</string>
+    <string name="went_foreground">went_foreground</string>
+    <string name="still_foreground">still_foreground</string>
+    <string name="went_background">went_background</string>
 </resources>

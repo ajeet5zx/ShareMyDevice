@@ -1,4 +1,4 @@
-package com.singhnextjuggernaut.ajeetkumar.sharemydevice.Validations;
+package com.singhnextjuggernaut.ajeetkumar.sharemydevice.utils.Validations;
 
 /**
  * Created by rahul on 23/3/18.
