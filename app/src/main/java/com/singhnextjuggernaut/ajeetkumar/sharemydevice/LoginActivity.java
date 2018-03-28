@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                     userData.setEmail(email);
                     userData.setPassword(password);
                     userData.setDeviceType(AppConstant.DEVICE_TYPE);
-                    userData.setDeviceToken("qAFWhgqEhbWRnhjWRhnWRhwerhnwene");
+                    userData.setDeviceToken(FirebaseInstanceId.getInstance().getToken());
                     Call<Data> call = ApiCaller.getApiInterface().login(userData);
                     call.enqueue(new Callback<Data>() {
                         @Override

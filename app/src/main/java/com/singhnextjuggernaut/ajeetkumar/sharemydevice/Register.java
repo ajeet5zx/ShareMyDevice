@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.utils.Validations.Utils;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
@@ -45,7 +46,7 @@ public class Register extends AppCompatActivity {
                             data.setName(name_t);
                             data.setEmail(email_t);
                             data.setPassword(password_t);
-                            data.setDeviceToken("dfndnfRjRFnRFnRWMRW");
+                            data.setDeviceToken(CommonData.getFCMToken());
                             data.setDeviceType(AppConstant.DEVICE_TYPE);
 
                             Call<UserData> call = ApiCaller.getApiInterface().registeruser(data);

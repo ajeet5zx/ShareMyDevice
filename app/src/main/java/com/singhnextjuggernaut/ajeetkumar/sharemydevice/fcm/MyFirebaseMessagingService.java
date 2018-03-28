@@ -13,6 +13,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.MainActivity;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -54,15 +55,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(final RemoteMessage remoteMessage) {
         // Handle data payload of FCM messages.
-        Log.d(TAG, getString(R.string.log_fcm_message_id) + remoteMessage.getMessageId());
-        //   Log.d(TAG, "FCM Notification Body: " + remoteMessage.getNotification().getBody());
-        Log.d(TAG, getString(R.string.log_fcm_notification_message) + remoteMessage.getNotification());
-        Log.d(TAG, getString(R.string.log_fcm_data) + remoteMessage.getData());
         Log.d(TAG, getString(R.string.log_fcm_data_message) + remoteMessage.getData().get(MESSAGE));
         /*
          * Foreground.get(getApplication()).isForeground() checks if the app is in foreground i.e visible not minimized or killed
          * if it is killed or minimized show notification
          */
+        /*
         if (Foreground.get(getApplication()).isForeground()) {
             Intent mIntent = new Intent(NOTIFICATION_RECEIVED);
             Bundle mBundle = new Bundle();
@@ -72,23 +70,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             mIntent.putExtras(mBundle);
             LocalBroadcastManager.getInstance(this).sendBroadcast(mIntent);
         } else {
-            showNotification(remoteMessage.getData());
+            //showNotification(remoteMessage.getData());
         }
+        */
     }
 
     /**
      * @param data notification data
      */
+    /*
     public void showNotification(final Map<String, String> data) {
-        final Intent notificationIntent = new Intent(getApplicationContext(), TaskDetailActivity.class);
-        notificationIntent.putExtra(BOOKINGID, data.get(BOOKINGID));
-        notificationIntent.putExtra(BOOKING_MODE, FROM_NOTIFICATION);
+        final Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
         notificationIntent.putExtra(NOTIFICATION_TYPE, data.get(NOTIFICATION_TYPE));
         PendingIntent pi = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         Resources r = getResources();
-        Notification notification = new NotificationCompat.Builder(this)
+        Notification notification = new Notification.Builder(this)
                 //     .setTicker(r.getString(R.string.app_name))
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(data.get(MESSAGE)))
+                .setStyle(new Notification.BigTextStyle().bigText(data.get(MESSAGE)))
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(r.getString(R.string.app_name))
                 .setContentText(data.get(MESSAGE))
@@ -99,5 +97,5 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .build();
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, notification);
-    }
+    } */
 }

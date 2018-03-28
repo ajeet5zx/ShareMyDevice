@@ -33,7 +33,7 @@ public interface ApiKeyConstant {
     String KEY = "key";
 
 
-    String MESSAGE = "messageToDisplay";
+    String MESSAGE = "message";
     String DATA = "data";
     String STATUS_CODE = "statusCode";
     String AUTHORIZATION = "authorization";

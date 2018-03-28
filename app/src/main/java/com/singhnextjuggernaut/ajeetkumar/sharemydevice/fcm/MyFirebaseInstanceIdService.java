@@ -9,8 +9,8 @@ import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 ;
 
 /**
- * Developer: Saurabh Verma
- * Dated: 19-02-2017.
+ * Developer: Rahul Kumar
+ * Dated: 27-03-2018.
  */
 public class MyFirebaseInstanceIdService extends FirebaseInstanceIdService {
     private static final String TAG = MyFirebaseInstanceIdService.class.getName();
@@ -74,6 +74,7 @@ public class MyFirebaseInstanceIdService extends FirebaseInstanceIdService {
         Log.d(TAG, token);
         if (token != null) {
             CommonData.updateFCMToken(token);
+
         }
         if (token != null && fcmTokenCallback != null) {
             fcmTokenCallback.onTokenReceived(token);
