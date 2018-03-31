@@ -73,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(Call<Data> call, Throwable t) {
                             Log.d("err",t.getMessage());
+                            Log.d("SSGS","dgahAEhAEH");
                         }
                     });
                 }

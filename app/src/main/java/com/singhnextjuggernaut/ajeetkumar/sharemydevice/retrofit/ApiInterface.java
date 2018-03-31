@@ -34,5 +34,5 @@ public interface ApiInterface {
     Call<ResponseMessage> forgotpassword(@Body UserData userData);
 
     @POST(ApiConstants.resetpassword)
-    Call<UserData> resetpasswordr(@Header("access_token") String value ,@Body UserData userData);
+    Call<UserData> resetpassword(@Header("access_token") String value ,@Body UserData userData);
 }

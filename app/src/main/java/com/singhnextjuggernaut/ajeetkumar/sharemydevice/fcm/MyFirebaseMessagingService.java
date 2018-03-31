@@ -13,7 +13,9 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.LoginActivity;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.MainActivity;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.MyInitilizer;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -56,29 +58,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(final RemoteMessage remoteMessage) {
         // Handle data payload of FCM messages.
         Log.d(TAG, getString(R.string.log_fcm_data_message) + remoteMessage.getData().get(MESSAGE));
-        /*
-         * Foreground.get(getApplication()).isForeground() checks if the app is in foreground i.e visible not minimized or killed
-         * if it is killed or minimized show notification
-         */
-        /*
-        if (Foreground.get(getApplication()).isForeground()) {
-            Intent mIntent = new Intent(NOTIFICATION_RECEIVED);
-            Bundle mBundle = new Bundle();
-            for (String key : remoteMessage.getData().keySet()) {
-                mBundle.putString(key, remoteMessage.getData().get(key));
-            }
-            mIntent.putExtras(mBundle);
-            LocalBroadcastManager.getInstance(this).sendBroadcast(mIntent);
-        } else {
-            //showNotification(remoteMessage.getData());
-        }
-        */
+        showNotification(remoteMessage.getData());
+
     }
 
     /**
      * @param data notification data
      */
-    /*
+
     public void showNotification(final Map<String, String> data) {
         final Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
         notificationIntent.putExtra(NOTIFICATION_TYPE, data.get(NOTIFICATION_TYPE));
@@ -97,5 +84,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .build();
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, notification);
-    } */
+
+    }
 }

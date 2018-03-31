@@ -11,7 +11,6 @@ public interface  BuildConfig {
     // Fields from product flavor: DEV
     public static final String BASE_URL = "https://sharemydevise.herokuapp.com";
     public static final String BUILD_SERVER_TYPE = "Dev";
-    public static final String GOOGLE_URL = "https://maps.googleapis.com/";
     public static final boolean IS_UNIVERSAL = false;
     public static final boolean WATER_MARK = false;
     // Fields from default config.
