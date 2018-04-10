@@ -1,6 +1,7 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -66,7 +67,8 @@ public class LoginActivity extends AppCompatActivity {
                                 CommonData.saveRegisterationData(response.body());
                                 Log.d("Paper Data",CommonData.getRegisterationData().toString());
                             } else {
-                                //
+                                Intent intent = new Intent(LoginActivity.this, home.class);
+                                startActivity(intent);
                             }
                         }
 
