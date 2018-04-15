@@ -7,7 +7,7 @@ public class DeviceData {
 
     @SerializedName("owner_id")
     @Expose
-    private String ownerId;
+    private Object ownerId;
     @SerializedName("assignee_id")
     @Expose
     private Object assigneeId;
@@ -60,7 +60,7 @@ public class DeviceData {
      * @param isAvailable
      * @param version
      */
-    public DeviceData(String ownerId, Object assigneeId, Boolean isAvailable, Integer sharedCount, String id, String name, String os, String version, String imei, String stickerNo, Integer v) {
+    public DeviceData(Object ownerId, Object assigneeId, Boolean isAvailable, Integer sharedCount, String id, String name, String os, String version, String imei, String stickerNo, Integer v) {
         super();
         this.ownerId = ownerId;
         this.assigneeId = assigneeId;
@@ -75,7 +75,7 @@ public class DeviceData {
         this.v = v;
     }
 
-    public String getOwnerId() {
+    public Object getOwnerId() {
         return ownerId;
     }
 

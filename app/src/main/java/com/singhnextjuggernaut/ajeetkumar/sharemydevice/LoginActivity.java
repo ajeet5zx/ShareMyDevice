@@ -66,9 +66,10 @@ public class LoginActivity extends AppCompatActivity {
                                 CommonData.saveAccessToken(response.body().getAccessToken());
                                 CommonData.saveRegisterationData(response.body());
                                 Log.d("Paper Data",CommonData.getRegisterationData().toString());
-                            } else {
                                 Intent intent = new Intent(LoginActivity.this, home.class);
                                 startActivity(intent);
+                            } else {
+
                             }
                         }
 

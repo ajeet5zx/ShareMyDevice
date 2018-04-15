@@ -6,9 +6,11 @@
     tools:context=".Android_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Android" />
+   <android.support.v7.widget.RecyclerView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/android_tab_recycler"
+       android:background="@color/colorPrimaryDark">
 
+   </android.support.v7.widget.RecyclerView>
 </FrameLayout>
