@@ -3,6 +3,7 @@ package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ public class Android_Fragment extends Fragment {
         View rootview=inflater.inflate(R.layout.fragment_android_, container, false);
         //getting the recyclerview from xml
         recyclerView = (RecyclerView) rootview.findViewById(R.id.android_tab_recycler);
+        //recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 

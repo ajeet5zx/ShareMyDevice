@@ -78,7 +78,7 @@ CREATED BY AJEET SINGH
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
         TextView status,tvowner,tvstickerno,tyversion,scree,reso,brand,model;
-        ImageButton ibt;
+        ImageView ibt;
 
         public ProductViewHolder(View itemView) {
             super(itemView);

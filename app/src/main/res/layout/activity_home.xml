@@ -20,27 +20,30 @@
         android:background="@android:color/background_light"
         android:paddingTop="10dp"
         app:tabIndicatorColor="@android:color/holo_red_dark"
-        style="@style/tabBackground"
         app:tabSelectedTextColor="@android:color/holo_purple"
         app:tabTextColor="@color/cardview_dark_background">
+        <!--style="@style/tabBackground"-->
+
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Android" />
+            android:icon="@drawable/ic_android11"
+            />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabItem2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Iphone" />
+            android:icon="@drawable/ic_apple"
+            />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabItem3"
+            android:icon="@drawable/ic_usb"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cables" />
+            android:layout_height="wrap_content" />
 
     </android.support.design.widget.TabLayout>
 
