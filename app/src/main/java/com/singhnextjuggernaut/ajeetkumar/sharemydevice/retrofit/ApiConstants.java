@@ -12,4 +12,5 @@ public interface ApiConstants {
     String logout = "/api/v1/logout";
     String resetpassword = "/api/v1/resetpassword";
     String forgotpassword = "/api/v1/forgotpassword";
+    String devivelist = "/api/v1/getDeviceList";
 }

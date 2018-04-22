@@ -20,12 +20,21 @@ public class DeviceData {
     @SerializedName("_id")
     @Expose
     private String id;
-    @SerializedName("name")
+    @SerializedName("brand")
     @Expose
-    private String name;
+    private String brand;
+    @SerializedName("model")
+    @Expose
+    private String model;
     @SerializedName("os")
     @Expose
     private String os;
+    @SerializedName("screen_size")
+    @Expose
+    private String screen_size;
+    @SerializedName("resolution")
+    @Expose
+    private String resolution;
     @SerializedName("version")
     @Expose
     private String version;
@@ -35,6 +44,9 @@ public class DeviceData {
     @SerializedName("sticker_no")
     @Expose
     private String stickerNo;
+    @SerializedName("deviceCategory")
+    @Expose
+    private String deviceCategory;
     @SerializedName("__v")
     @Expose
     private Integer v;
@@ -55,19 +67,27 @@ public class DeviceData {
      * @param assigneeId
      * @param ownerId
      * @param imei
-     * @param name
+     * @param brand
+     * @param model
+     * @param screen_size
+     * @param resolution
+     * @param deviceCategory
      * @param stickerNo
      * @param isAvailable
      * @param version
      */
-    public DeviceData(Object ownerId, Object assigneeId, Boolean isAvailable, Integer sharedCount, String id, String name, String os, String version, String imei, String stickerNo, Integer v) {
+    public DeviceData(Object ownerId, Object assigneeId, Boolean isAvailable, Integer sharedCount, String id, String brand, String model, String screen_size, String resolution, String deviceCategory, String os, String version, String imei, String stickerNo, Integer v) {
         super();
         this.ownerId = ownerId;
         this.assigneeId = assigneeId;
         this.isAvailable = isAvailable;
         this.sharedCount = sharedCount;
         this.id = id;
-        this.name = name;
+        this.brand = brand;
+        this.model = model;
+        this.screen_size = screen_size;
+        this.resolution = resolution;
+        this.deviceCategory = deviceCategory;
         this.os = os;
         this.version = version;
         this.imei = imei;
@@ -79,7 +99,7 @@ public class DeviceData {
         return ownerId;
     }
 
-    public void setOwnerId(String ownerId) {
+    public void setOwnerId(Object ownerId) {
         this.ownerId = ownerId;
     }
 
@@ -91,12 +111,12 @@ public class DeviceData {
         this.assigneeId = assigneeId;
     }
 
-    public Boolean getIsAvailable() {
+    public Boolean getAvailable() {
         return isAvailable;
     }
 
-    public void setIsAvailable(Boolean isAvailable) {
-        this.isAvailable = isAvailable;
+    public void setAvailable(Boolean available) {
+        isAvailable = available;
     }
 
     public Integer getSharedCount() {
@@ -115,12 +135,20 @@ public class DeviceData {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public String getOs() {
@@ -129,6 +157,22 @@ public class DeviceData {
 
     public void setOs(String os) {
         this.os = os;
+    }
+
+    public String getScreen_size() {
+        return screen_size;
+    }
+
+    public void setScreen_size(String screen_size) {
+        this.screen_size = screen_size;
+    }
+
+    public String getResolution() {
+        return resolution;
+    }
+
+    public void setResolution(String resolution) {
+        this.resolution = resolution;
     }
 
     public String getVersion() {
@@ -155,6 +199,14 @@ public class DeviceData {
         this.stickerNo = stickerNo;
     }
 
+    public String getDeviceCategory() {
+        return deviceCategory;
+    }
+
+    public void setDeviceCategory(String deviceCategory) {
+        this.deviceCategory = deviceCategory;
+    }
+
     public Integer getV() {
         return v;
     }
@@ -163,16 +215,15 @@ public class DeviceData {
         this.v = v;
     }
 
-
     @Override
     public String toString() {
         return "{" +
-                "  ownerId : '" + ownerId +"' ," +
+                "  ownerId : '" + ownerId.toString() +"' ," +
                 "  id : '" + id +"' ," +
-                "  assigneeId : '" + assigneeId +"' ," +
+                "  assigneeId : '" + assigneeId.toString() +"' ," +
                 "  isAvailable : '" + isAvailable +"' ," +
                 "  sharedCount : '" + sharedCount +"' ," +
-                "  name : '" + name +"' ," +
+                "  name : '" + model +"' ," +
                 "  os : '" + os +"' ," +
                 "  version : '" + version +" '," +
                 "  imei : '" + imei +"' ," +

@@ -9,7 +9,7 @@ public interface  BuildConfig {
     public static final int VERSION_CODE = 100;
     public static final String VERSION_NAME = "1.0.0";
     // Fields from product flavor: DEV
-    public static final String BASE_URL = "https://sharemydevise.herokuapp.com";
+    public static final String BASE_URL = "http://ec2-13-127-185-75.ap-south-1.compute.amazonaws.com:8080";
     public static final String BUILD_SERVER_TYPE = "Dev";
     public static final boolean IS_UNIVERSAL = false;
     public static final boolean WATER_MARK = false;

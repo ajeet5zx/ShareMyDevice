@@ -4,6 +4,7 @@ import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.BuildConfig;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.PaperDbConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceList;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import io.paperdb.Paper;
 import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.DEV;
 import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.PAPER_GET_DATA;
 import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.PAPER_SAVE_DATA;
+import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.PAPER_SAVE_DEVICE_LIST;
 import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.PAPER_SAVE_TASK_HEADER;
 
 
@@ -117,6 +119,23 @@ public final class CommonData implements PaperDbConstant {
     public static Data getRegisterationData() {
         return Paper.book().read(PAPER_GET_DATA);
     }
+
+    /**
+     * @param deviceList user details;
+     */
+    public static void saveDeviceList(final DeviceList deviceList) {
+        Paper.book().write(PAPER_SAVE_DEVICE_LIST, deviceList);
+    }
+
+
+
+    /**
+     * @return return data;
+     */
+    public static DeviceList getDeviceList() {
+        return Paper.book().read(PAPER_SAVE_DEVICE_LIST);
+    }
+
 
 
     //-------------task details save and retreived---------------------

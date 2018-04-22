@@ -1,5 +1,7 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
+import android.bluetooth.BluetoothClass;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +21,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceList;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class home extends AppCompatActivity {
 
@@ -40,6 +56,25 @@ public class home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Call<List<DeviceData>> call = ApiCaller.getApiInterface().devicelist("Bearer "+CommonData.getAccessToken());
+        call.enqueue(new Callback<List<DeviceData>>() {
+            @Override
+            public void onResponse(Call<List<DeviceData>> call, Response<List<DeviceData>> response) {
+                if(response.isSuccessful()) {
+                    //Log.d("List",response.body().getDeviceDataList().get(0).toString());
+                    CommonData.saveDeviceList(new DeviceList(response.body()));
+                    //Log.d("List",.getDeviceDataList().get(0).toString());
+
+                } else {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<DeviceData>> call, Throwable t) {
+                Log.d("err",t.getMessage());
+            }
+        });
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);

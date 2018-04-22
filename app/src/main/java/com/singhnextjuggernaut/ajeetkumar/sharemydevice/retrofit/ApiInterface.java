@@ -2,8 +2,12 @@ package com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit;
 
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceList;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.ResponseMessage;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -35,4 +39,7 @@ public interface ApiInterface {
 
     @POST(ApiConstants.resetpassword)
     Call<UserData> resetpassword(@Header("access_token") String value ,@Body UserData userData);
+
+    @POST(ApiConstants.devivelist)
+    Call<List<DeviceData>> devicelist(@Header("Authorization") String value);
 }
