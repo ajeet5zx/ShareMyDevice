@@ -14,15 +14,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.ResponseMessage;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiInterface;
 
+import java.util.List;
 import java.util.zip.Inflater;
 
 import io.paperdb.Paper;
@@ -65,6 +69,38 @@ public class LoginActivity extends AppCompatActivity {
                                 //Log.d("Token",response.body().getAccessToken());
                                 CommonData.saveAccessToken(response.body().getAccessToken());
                                 CommonData.saveRegisterationData(response.body());
+                                Call<List<DeviceData>> device_list_api = ApiCaller.getApiInterface().devicelist("Bearer "+CommonData.getAccessToken());
+                                device_list_api.enqueue(new Callback<List<DeviceData>>() {
+                                    @Override
+                                    public void onResponse(Call<List<DeviceData>> call, Response<List<DeviceData>> response) {
+                                        if(response.isSuccessful()) {
+                                            //Log.d("List",response.body().getDeviceDataList().get(0).toString());
+                                            Multimap<String,DeviceData> devivecelistmap = Multimaps.index(
+                                                    response.body(),
+                                                    new com.google.common.base.Function<DeviceData, String>() {
+                                                        @Override
+                                                        public String apply(DeviceData input) {
+                                                            return input.getDeviceCategory();
+                                                        }
+                                                    }
+                                            );
+
+                                            CommonData.saveAndroidList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_ANDROID));
+                                            CommonData.saveIOSList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_IOS));
+                                            CommonData.saveCableList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_CABLE));
+                                            Intent intent = new Intent(LoginActivity.this, home.class);
+                                            startActivity(intent);
+
+                                        } else {
+
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<List<DeviceData>> call, Throwable t) {
+                                        Log.d("err",t.getMessage());
+                                    }
+                                });
                                 Intent intent = new Intent(LoginActivity.this, home.class);
                                 startActivity(intent);
                             } else {
