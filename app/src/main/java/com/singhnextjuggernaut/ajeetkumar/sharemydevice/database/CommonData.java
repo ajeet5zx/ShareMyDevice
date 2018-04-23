@@ -8,12 +8,15 @@ import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceList;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.paperdb.Paper;
 import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.DEV;
+import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.PAPER_ANDROID_DEVICE_LIST;
+import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.PAPER_CABLE_LIST;
 import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.PAPER_GET_DATA;
+import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.PAPER_IOS_DEVICE_LIST;
 import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.PAPER_SAVE_DATA;
-import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.PAPER_SAVE_DEVICE_LIST;
 import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.PAPER_SAVE_TASK_HEADER;
 
 
@@ -123,17 +126,49 @@ public final class CommonData implements PaperDbConstant {
     /**
      * @param deviceList user details;
      */
-    public static void saveDeviceList(final DeviceList deviceList) {
-        Paper.book().write(PAPER_SAVE_DEVICE_LIST, deviceList);
+    public static void saveAndroidList(final List<DeviceData> deviceList) {
+        Paper.book().write(PAPER_ANDROID_DEVICE_LIST, deviceList);
     }
 
 
 
     /**
-     * @return return data;
+     * @return return deviveList;
      */
-    public static DeviceList getDeviceList() {
-        return Paper.book().read(PAPER_SAVE_DEVICE_LIST);
+    public static List<DeviceData> getAndroidList() {
+        return Paper.book().read(PAPER_ANDROID_DEVICE_LIST);
+    }
+
+    /**
+     * @param deviceList user details;
+     */
+    public static void saveIOSList(final List<DeviceData> deviceList) {
+        Paper.book().write(PAPER_IOS_DEVICE_LIST, deviceList);
+    }
+
+
+
+    /**
+     * @return return deviveList;
+     */
+    public static List<DeviceData> getIOSList() {
+        return Paper.book().read(PAPER_IOS_DEVICE_LIST);
+    }
+
+    /**
+     * @param deviceList user details;
+     */
+    public static void saveCableList(final List<DeviceData> deviceList) {
+        Paper.book().write(PAPER_CABLE_LIST, deviceList);
+    }
+
+
+
+    /**
+     * @return return deviveList;
+     */
+    public static List<DeviceData> getCableList() {
+        return Paper.book().read(PAPER_CABLE_LIST);
     }
 
 

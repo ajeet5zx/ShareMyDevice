@@ -77,20 +77,20 @@ CREATED BY AJEET SINGH
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView status,tvowner,tvstickerno,tyversion,scree,reso,brand,model;
-        ImageView ibt;
+        TextView tv_status,tv_owner_name,tv_sticker_no,tv_android_version,tv_screen_size,tv_resolution,tv_brand_name,tv_model_name;
+        ImageView request_device_button;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-            status = itemView.findViewById(R.id.status);
-            tvowner = itemView.findViewById(R.id.owner_name);
-            tvstickerno = itemView.findViewById(R.id.sticker_no);
-            tyversion = itemView.findViewById(R.id.android_version);
-            scree = itemView.findViewById(R.id.screen_size);
-            reso = itemView.findViewById(R.id.resolution);
-            brand = itemView.findViewById(R.id.brand_name);
-            model = itemView.findViewById(R.id.model_name);
-            ibt = itemView.findViewById(R.id.request_button);
+            tv_status = itemView.findViewById(R.id.status);
+            tv_owner_name = itemView.findViewById(R.id.owner_name);
+            tv_sticker_no = itemView.findViewById(R.id.sticker_no);
+            tv_android_version = itemView.findViewById(R.id.android_version);
+            tv_screen_size = itemView.findViewById(R.id.screen_size);
+            tv_resolution = itemView.findViewById(R.id.resolution);
+            tv_brand_name = itemView.findViewById(R.id.brand_name);
+            tv_model_name = itemView.findViewById(R.id.model_name);
+            request_device_button = itemView.findViewById(R.id.request_button);
         }
     }
 }

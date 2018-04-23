@@ -199,7 +199,7 @@ public class DeviceData {
         this.stickerNo = stickerNo;
     }
 
-    public String getDeviceCategory() {
+    public  String getDeviceCategory() {
         return deviceCategory;
     }
 
