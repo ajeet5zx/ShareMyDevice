@@ -14,15 +14,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.ResponseMessage;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiInterface;
 
+import java.util.List;
 import java.util.zip.Inflater;
 
 import io.paperdb.Paper;

@@ -17,6 +17,10 @@ android {
         }
     }
     buildToolsVersion '27.0.3'
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -31,10 +35,11 @@ dependencies {
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    compile "com.daimajia.swipelayout:library:1.2.0@aar"
+    implementation "com.daimajia.swipelayout:library:1.2.0@aar"
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.google.firebase:firebase-messaging:12.0.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    implementation 'com.google.guava:guava:24.1-android'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
 

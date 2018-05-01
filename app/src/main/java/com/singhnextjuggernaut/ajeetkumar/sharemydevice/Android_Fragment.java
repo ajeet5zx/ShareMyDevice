@@ -10,7 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
+
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -18,7 +22,7 @@ import java.util.ArrayList;
  */
 public class Android_Fragment extends Fragment {
 
-    ArrayList<device_list> devices;
+    List<DeviceData> devices;
     RecyclerView recyclerView;
 
     public Android_Fragment() {
@@ -38,21 +42,7 @@ public class Android_Fragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         //initializing the productlist
-        devices = new ArrayList<>();
-
-
-        //adding some items to our list
-        devices.add(
-                new device_list(true,"Ajeet singh","santra","ka rus","1.00","55.5inch","1000c1001",111));
-        devices.add(
-                new device_list(true,"Ajeet singh","santra","ka rus","1.00","55.5inch","1000c1001",111));
-        devices.add(
-                new device_list(true,"Ajeet singh","santra","ka rus","1.00","55.5inch","1000c1001",111));
-        devices.add(
-                new device_list(true,"Ajeet singh","santra","ka rus","1.00","55.5inch","1000c1001",111));
-        devices.add(
-                new device_list(true,"Ajeet singh","santra","ka rus","1.00","55.5inch","1000c1001",111));
-
+        devices = CommonData.getAndroidList();
 
         //creating recyclerview adapter
         android_list_adapter adapter = new android_list_adapter(getActivity(),devices);

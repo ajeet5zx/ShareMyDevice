@@ -199,7 +199,7 @@ public class DeviceData {
         this.stickerNo = stickerNo;
     }
 
-    public String getDeviceCategory() {
+    public  String getDeviceCategory() {
         return deviceCategory;
     }
 
@@ -218,9 +218,7 @@ public class DeviceData {
     @Override
     public String toString() {
         return "{" +
-                "  ownerId : '" + ownerId.toString() +"' ," +
                 "  id : '" + id +"' ," +
-                "  assigneeId : '" + assigneeId.toString() +"' ," +
                 "  isAvailable : '" + isAvailable +"' ," +
                 "  sharedCount : '" + sharedCount +"' ," +
                 "  name : '" + model +"' ," +

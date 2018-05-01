@@ -1,12 +1,8 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
-import android.bluetooth.BluetoothClass;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,10 +18,10 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceList;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
 
@@ -34,6 +30,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class home extends AppCompatActivity {
 
@@ -56,18 +53,42 @@ public class home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Call<List<DeviceData>> call = ApiCaller.getApiInterface().devicelist("Bearer "+CommonData.getAccessToken());
-        call.enqueue(new Callback<List<DeviceData>>() {
+        Call<List<DeviceData>> device_list_api = ApiCaller.getApiInterface().devicelist("Bearer "+ CommonData.getAccessToken());
+        device_list_api.enqueue(new Callback<List<DeviceData>>() {
             @Override
             public void onResponse(Call<List<DeviceData>> call, Response<List<DeviceData>> response) {
                 if(response.isSuccessful()) {
                     //Log.d("List",response.body().getDeviceDataList().get(0).toString());
-                    CommonData.saveDeviceList(new DeviceList(response.body()));
-                    //Log.d("List",.getDeviceDataList().get(0).toString());
+                    Multimap<String,DeviceData> devivecelistmap = Multimaps.index(
+                            response.body(),
+                            input -> input.getDeviceCategory()
+                    );
+                    //CommonData.saveAndroidList((List<DeviceData>)response.body());
+                    ///Log.d("FromPaperDB",CommonData.getAndroidList().get(0).toString());
+                     CommonData.saveIOSList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_ANDROID));
+                     CommonData.saveIOSList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_IOS));
+                     CommonData.saveCableList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_CABLE));
 
                 } else {
 
                 }
+
+
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+                // Create the adapter that will return a fragment for each of the three
+                // primary sections of the activity.
+                mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+                // Set up the ViewPager with the sections adapter.
+                mViewPager = (ViewPager) findViewById(R.id.container);
+                mViewPager.setAdapter(mSectionsPagerAdapter);
+
+                TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+                mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+                tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
             }
 
             @Override
@@ -76,20 +97,6 @@ public class home extends AppCompatActivity {
             }
         });
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
     }
 
