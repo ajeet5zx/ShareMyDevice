@@ -9,10 +9,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.internal.LinkedHashTreeMap;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /*
@@ -53,7 +56,7 @@ CREATED BY AJEET SINGH
             status="NOT FREE";
         }
         holder.tv_status.setText(status);
-        holder.tv_owner_name.setText(""+((UserData)device.getOwnerId()).getName());
+        holder.tv_owner_name.setText(""+ ((AbstractMap<String,String>) device.getOwnerId()).get("name"));
         holder.tv_sticker_no.setText(""+device.getStickerNo());
         holder.tv_android_version.setText(""+device.getVersion());
         holder.tv_screen_size.setText(""+device.getScreen_size());
