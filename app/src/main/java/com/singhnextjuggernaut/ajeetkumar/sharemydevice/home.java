@@ -59,15 +59,16 @@ public class home extends AppCompatActivity {
             public void onResponse(Call<List<DeviceData>> call, Response<List<DeviceData>> response) {
                 if(response.isSuccessful()) {
                     //Log.d("List",response.body().getDeviceDataList().get(0).toString());
-                    Multimap<String,DeviceData> devivecelistmap = Multimaps.index(
-                            response.body(),
-                            input -> input.getDeviceCategory()
-                    );
-                    //CommonData.saveAndroidList((List<DeviceData>)response.body());
-                    ///Log.d("FromPaperDB",CommonData.getAndroidList().get(0).toString());
-                     CommonData.saveIOSList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_ANDROID));
-                     CommonData.saveIOSList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_IOS));
-                     CommonData.saveCableList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_CABLE));
+//                    Multimap<String,DeviceData> devivecelistmap = Multimaps.index(
+//                            response.body(),
+//                            input -> input.getDeviceCategory()
+//                    );
+//                    Log.d("Type",devivecelistmap.get(AppConstant.DEVICE_CATEGORY_ANDROID).getClass().getName());
+//                    CommonData.saveAndroidList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_ANDROID));
+//                    CommonData.saveIOSList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_IOS));
+//                    CommonData.saveCableList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_CABLE));
+
+                    CommonData.saveAndroidList((List<DeviceData>)response.body());
 
                 } else {
 
