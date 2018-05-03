@@ -1,7 +1,11 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import android.support.v4.app.Fragment;
@@ -10,12 +14,17 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.google.common.collect.Multimap;
@@ -48,6 +57,7 @@ public class home extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private ImageView side_menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +105,27 @@ public class home extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<DeviceData>> call, Throwable t) {
                 Log.d("err",t.getMessage());
+            }
+        });
+
+        side_menu =(ImageView)findViewById(R.id.menu_button);
+        side_menu.setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick (View view){
+                PopupWindow popupSort;
+
+                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View layout = inflater.inflate(R.layout.side_menu,
+                        (ViewGroup) findViewById(R.id.side_menu_card));
+                popupSort = new PopupWindow(layout, ViewGroup.LayoutParams.WRAP_CONTENT
+                        , ViewGroup.LayoutParams.WRAP_CONTENT, true);
+                popupSort.showAtLocation(view, Gravity.TOP|Gravity.RIGHT, 0, 50);
+                popupSort.setElevation(10);
+                popupSort.setBackgroundDrawable(new ColorDrawable(Color.RED));
+
+
             }
         });
 
@@ -191,5 +222,8 @@ public class home extends AppCompatActivity {
             // Show 3 total pages.
             return 3;
         }
+
+
     }
+
 }
