@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.singhnextjuggernaut.ajeetkumar.sharemydevice.Add_devices">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <include layout="@layout/titlebar" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="6"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/loginCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/cardview_dark_background"
+                    android:padding="25dp"
+                    android:paddingBottom="20dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="20dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="22dp"
+                            android:layout_marginRight="20dp"
+                            android:paddingTop="10dp"
+                            android:text="BRAND" />
+
+                        <EditText
+                            android:id="@+id/Device_brand"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:inputType="text"
+                            android:paddingTop="10dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="22dp"
+                            android:layout_marginRight="20dp"
+                            android:paddingTop="10dp"
+                            android:text="MODEL" />
+
+                        <EditText
+                            android:id="@+id/device_model"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:inputType="textEmailAddress"
+                            android:paddingTop="10dp">
+
+                        </EditText>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="22dp"
+                            android:layout_marginRight="20dp"
+                            android:paddingTop="10dp"
+                            android:text="STICKER ID" />
+
+                        <EditText
+                            android:id="@+id/device_stickerid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:inputType="textPassword"
+                            android:paddingTop="10dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="22dp"
+                            android:layout_marginRight="20dp"
+                            android:paddingTop="10dp"
+                            android:text="OS VERSION" />
+
+                        <EditText
+                            android:id="@+id/device_os_version"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:inputType="textPassword"
+                            android:paddingTop="10dp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="22dp"
+                            android:layout_marginRight="20dp"
+                            android:paddingTop="10dp"
+                            android:text="RESOLUTION" />
+
+                        <EditText
+                            android:id="@+id/profile_conf_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:inputType="textPassword"
+                            android:paddingTop="10dp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="22dp"
+                            android:layout_marginRight="20dp"
+                            android:paddingTop="10dp"
+                            android:text="SCREEN SIZE" />
+
+                        <EditText
+                            android:id="@+id/device_screen_size"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:inputType="textPassword"
+                            android:paddingTop="10dp" />
+
+                        <Button
+                            android:id="@+id/device_save"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@android:color/holo_blue_light"
+                            android:padding="10dp"
+                            android:text="SAVE" />
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

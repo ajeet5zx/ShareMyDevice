@@ -39,7 +39,14 @@
         <activity
             android:name=".home"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Profile" />
+        <activity android:name=".MyAndroidDevices" />
+        <activity android:name=".MyIosDevices" />
+        <activity android:name=".MyCables" />
+        <activity android:name=".AboutSection" />
+        <activity android:name=".Add_devices" />
+        <activity android:name=".Add_cables"></activity>
     </application>
 
 </manifest>
