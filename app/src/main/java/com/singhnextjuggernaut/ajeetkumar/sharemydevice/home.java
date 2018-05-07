@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.common.collect.Multimap;
@@ -63,11 +64,11 @@ public class home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Call<List<DeviceData>> device_list_api = ApiCaller.getApiInterface().devicelist("Bearer "+ CommonData.getAccessToken());
+        Call<List<DeviceData>> device_list_api = ApiCaller.getApiInterface().devicelist("Bearer " + CommonData.getAccessToken());
         device_list_api.enqueue(new Callback<List<DeviceData>>() {
             @Override
             public void onResponse(Call<List<DeviceData>> call, Response<List<DeviceData>> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     //Log.d("List",response.body().getDeviceDataList().get(0).toString());
 //                    Multimap<String,DeviceData> devivecelistmap = Multimaps.index(
 //                            response.body(),
@@ -78,7 +79,7 @@ public class home extends AppCompatActivity {
 //                    CommonData.saveIOSList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_IOS));
 //                    CommonData.saveCableList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_CABLE));
 
-                    CommonData.saveAndroidList((List<DeviceData>)response.body());
+                    CommonData.saveAndroidList((List<DeviceData>) response.body());
 
                 } else {
 
@@ -104,26 +105,78 @@ public class home extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<DeviceData>> call, Throwable t) {
-                Log.d("err",t.getMessage());
+                Log.d("err", t.getMessage());
             }
         });
 
-        side_menu =(ImageView)findViewById(R.id.menu_button);
+        side_menu = (ImageView) findViewById(R.id.menu_button);
+
         side_menu.setOnClickListener(new View.OnClickListener()
+
 
         {
             @Override
-            public void onClick (View view){
+            public void onClick(View view) {
                 PopupWindow popupSort;
+
 
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View layout = inflater.inflate(R.layout.side_menu,
                         (ViewGroup) findViewById(R.id.side_menu_card));
                 popupSort = new PopupWindow(layout, ViewGroup.LayoutParams.WRAP_CONTENT
                         , ViewGroup.LayoutParams.WRAP_CONTENT, true);
-                popupSort.showAtLocation(view, Gravity.TOP|Gravity.RIGHT, 0, 50);
+                popupSort.showAtLocation(view, Gravity.TOP | Gravity.RIGHT, 0, 50);
                 popupSort.setElevation(10);
-                popupSort.setBackgroundDrawable(new ColorDrawable(Color.RED));
+                RelativeLayout back_dim_layout = (RelativeLayout) findViewById(R.id.bac_dim_layout);
+
+                back_dim_layout.setVisibility(layout.VISIBLE);
+
+                TextView menu_profile = layout.findViewById(R.id.side_menu_profile);
+                TextView menu_ios = layout.findViewById(R.id.side_menu_ios);
+                TextView menu_android = layout.findViewById(R.id.side_menu_android);
+                TextView menu_cables = layout.findViewById(R.id.side_menu_cables);
+                TextView menu_about = layout.findViewById(R.id.side_menu_about);
+                TextView menu_logout = layout.findViewById(R.id.side_menu_logout);
+
+
+
+                menu_profile.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(home.this, Profile.class);
+                        startActivity(intent);
+                    }
+                });
+                menu_ios.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(home.this, Add_devices.class);
+                        startActivity(intent);
+                    }
+                });
+                menu_android.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(home.this, Add_devices.class);
+                        startActivity(intent);
+                    }
+                });
+                menu_cables.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(home.this, Add_cables.class);
+                        startActivity(intent);
+                    }
+                });
+                menu_about.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(home.this, AboutSection.class);
+                        startActivity(intent);
+                    }
+                });
+                menu_logout.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(home.this, Profile.class);
+                        startActivity(intent);
+                    }
+                });
+
 
 
             }
