@@ -16,5 +16,6 @@ public class MyInitilizer extends Application {
         super.onCreate();
         Paper.init(this);
         Foreground.init(this);
+
     }
 }

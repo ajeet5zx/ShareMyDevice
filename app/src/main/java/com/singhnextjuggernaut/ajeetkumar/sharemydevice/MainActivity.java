@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 
 import io.paperdb.Paper;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         login = (Button) findViewById(R.id.buttonLogin);
+        CommonData.updateFCMToken(FirebaseInstanceId.getInstance().getToken());
         //Paper.book("Device Data").write("deviceToken",FirebaseInstanceId.getInstance().getToken());
         login.setOnClickListener(new View.OnClickListener() {
             @Override

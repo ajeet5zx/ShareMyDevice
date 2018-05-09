@@ -2,17 +2,13 @@ package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,17 +16,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
@@ -129,15 +119,14 @@ public class home extends AppCompatActivity {
                 popupSort.setElevation(10);
                 RelativeLayout back_dim_layout = (RelativeLayout) findViewById(R.id.bac_dim_layout);
 
-                back_dim_layout.setVisibility(layout.VISIBLE);
+//                back_dim_layout.setVisibility(layout.VISIBLE);
 
                 TextView menu_profile = layout.findViewById(R.id.side_menu_profile);
-                TextView menu_ios = layout.findViewById(R.id.side_menu_ios);
+                //TextView menu_ios = layout.findViewById(R.id.side_menu_ios);
                 TextView menu_android = layout.findViewById(R.id.side_menu_android);
-                TextView menu_cables = layout.findViewById(R.id.side_menu_cables);
+               // TextView menu_cables = layout.findViewById(R.id.side_menu_cables);
                 TextView menu_about = layout.findViewById(R.id.side_menu_about);
                 TextView menu_logout = layout.findViewById(R.id.side_menu_logout);
-
 
 
                 menu_profile.setOnClickListener(new View.OnClickListener() {
@@ -146,24 +135,24 @@ public class home extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-                menu_ios.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Intent intent = new Intent(home.this, Add_devices.class);
-                        startActivity(intent);
-                    }
-                });
+//                menu_ios.setOnClickListener(new View.OnClickListener() {
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent(home.this, Add_devices.class);
+//                        startActivity(intent);
+//                    }
+//                });
                 menu_android.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent intent = new Intent(home.this, Add_devices.class);
+                        Intent intent = new Intent(home.this, MyAndroidDevices.class);
                         startActivity(intent);
                     }
                 });
-                menu_cables.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Intent intent = new Intent(home.this, Add_cables.class);
-                        startActivity(intent);
-                    }
-                });
+//                menu_cables.setOnClickListener(new View.OnClickListener() {
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent(home.this, Add_cables.class);
+//                        startActivity(intent);
+//                    }
+//                });
                 menu_about.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent(home.this, AboutSection.class);
@@ -176,7 +165,6 @@ public class home extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-
 
 
             }

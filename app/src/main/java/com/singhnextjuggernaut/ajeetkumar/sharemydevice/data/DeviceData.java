@@ -50,6 +50,8 @@ public class DeviceData {
     @SerializedName("__v")
     @Expose
     private Integer v;
+    private String deviceType;
+    private String deviceToken;
 
     /**
      * No args constructor for use in serialization
@@ -93,6 +95,14 @@ public class DeviceData {
         this.imei = imei;
         this.stickerNo = stickerNo;
         this.v = v;
+    }
+
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType;
+    }
+
+    public void setDeviceToken(String deviceToken) {
+        this.deviceToken = deviceToken;
     }
 
     public Object getOwnerId() {
