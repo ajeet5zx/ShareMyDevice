@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
     <!-- Bottom View Start-->
     <android.support.v7.widget.CardView
+        android:id="@+id/android_item_bottom_view_card"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true"
         android:layout_margin="3dp"
-        >
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true">
+
         <RelativeLayout
-        android:layout_marginTop="5dp"
-        android:layout_width="125dp"
-        android:layout_height="match_parent"
-        android:background="@android:color/holo_blue_light"
-        android:padding="5dp">
+            android:id="@+id/android_item_bottom_view_relative"
+            android:layout_width="125dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/holo_blue_light"
+            android:padding="5dp">
 
             <Button
 
@@ -27,12 +28,12 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/background_light"
                 android:text="REQUEST"
+                android:id="@+id/request_button"
                 android:textSize="15sp"
-                android:textStyle="bold"
-                 />
+                android:textStyle="bold" />
 
-        <!--What you want to show in SurfaceView-->
-    </RelativeLayout>
+            <!--What you want to show in SurfaceView-->
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
     <!--What you want to show-->
 
@@ -40,148 +41,164 @@
 
     <!-- Surface View Start -->
     <android.support.v7.widget.CardView
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp">
+
+        android:layout_margin="3dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="0.95"
-            android:padding="7dp">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-                <TextView
-                    android:id="@+id/status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-
-                    android:background="@android:color/holo_green_dark"
-                    android:padding="5dp"
-
-                    android:text="FREE"
-                    android:textColor="@color/cardview_light_background" />
-
-                <TextView
-                    android:id="@+id/owner_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:padding="5dp"
-                    android:text="Ajeet Singh"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-
-
-                    />
-
-                <TextView
-                    android:id="@+id/sticker_no"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:padding="5dp"
-                    android:text="100"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-
-                    />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.95"
+                android:orientation="vertical"
+                android:padding="7dp">
 
-                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/android_version"
+
+                    <TextView
+                        android:id="@+id/status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:background="@android:color/holo_green_dark"
+                        android:padding="5dp"
+                        android:text="FREE"
+                        android:textColor="@color/cardview_light_background" />
+
+                    <TextView
+                        android:id="@+id/current_owner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:padding="5dp"
+                        android:text="Ajeet Singh"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+
+
+                        />
+
+                    <TextView
+                        android:id="@+id/sticker_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:padding="5dp"
+                        android:text="100"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:padding="5dp"
-                    android:text="Lolipop 5.0"
-                    android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/screen_size"
+                    >
+
+                    <TextView
+                        android:id="@+id/android_version"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:padding="5dp"
+                        android:text="Lolipop 5.0"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/screen_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:padding="5dp"
+                        android:text="5.5 INCH"
+                        android:textStyle="bold"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/resolution"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:padding="5dp"
+                        android:text="1920 X 1080"
+                        android:textStyle="bold"
+
+                        />
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:padding="5dp"
-                    android:text="5.5 INCH"
-                    android:textStyle="bold"
 
-                    />
+                    >
 
-                <TextView
-                    android:id="@+id/resolution"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:padding="5dp"
-                    android:text="1920 X 1080"
-                    android:textStyle="bold"
+                    <TextView
+                        android:id="@+id/brand_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:padding="5dp"
+                        android:text="XIAOMI"
+                        android:textStyle="bold" />
 
-                    />
+                    <TextView
+                        android:id="@+id/model_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:padding="5dp"
+                        android:text="Redmi note 3"
+                        android:textStyle="bold"
 
+                        />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_height="wrap_content">
 
-            </RelativeLayout>
+                        <Switch
+                            android:id="@+id/change_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:visibility="gone"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/owner_name"
+                            android:padding="5dp"
+                            android:text="Ajeet Singh"
+                            android:textStyle="bold"
+                            android:visibility="visible"
 
+                            />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                >
-
-                <TextView
-                    android:id="@+id/brand_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:padding="5dp"
-                    android:text="XIAOMI"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/model_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:padding="5dp"
-                    android:text="Redmi note 3"
-                    android:textStyle="bold"
-
-                    />
-
-                <ImageView
-                    android:id="@+id/request_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_right_arrow2"
-                    android:textStyle="bold" />
+                    </LinearLayout>
 
 
-            </RelativeLayout>
+
+                </RelativeLayout>
 
 
-        </LinearLayout>
+            </LinearLayout>
 
             <android.support.v7.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
@@ -189,12 +206,12 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.01"
                 android:background="@android:color/holo_blue_light">
-                
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_left_arrow_triangle"
                     android:layout_gravity="center"
+                    android:src="@drawable/ic_left_arrow_triangle"
 
                     />
 

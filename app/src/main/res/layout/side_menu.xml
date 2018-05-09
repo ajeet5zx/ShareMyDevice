@@ -28,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
+                android:paddingBottom="10dp"
                 android:paddingTop="11dp"
                 android:src="@drawable/ic_smile" />
 
@@ -37,15 +38,16 @@
                 android:layout_alignParentEnd="false"
                 android:paddingLeft="20dp"
                 android:paddingRight="10dp"
+                android:paddingBottom="10dp"
                 android:paddingTop="11dp"
-                android:text="Hi Ajeet Singh !"
+                android:text="Hello There ! "
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textSize="22sp" />
         </RelativeLayout>
 
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -54,75 +56,109 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
                 android:paddingTop="11dp"
+                android:paddingBottom="10dp"
                 android:src="@drawable/ic_user" />
 
             <TextView
                 android:id="@+id/side_menu_profile"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@drawable/ripple_effect"
                 android:layout_height="wrap_content"
                 android:onClick="onClick"
                 android:paddingLeft="20dp"
+                android:paddingBottom="10dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:paddingRight="10dp"
                 android:paddingTop="11dp"
                 android:text="My Profile"
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="18sp" />
 
         </RelativeLayout>
 
 
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_centerInParent="true"-->
+
+                <!--android:paddingTop="11dp"-->
+                <!--android:src="@drawable/ic_apple_menu" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/side_menu_ios"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:background="@drawable/ripple_effect"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:paddingLeft="20dp"-->
+                <!--android:paddingRight="10dp"-->
+                <!--android:paddingTop="11dp"-->
+                <!--android:text="My IOS Devices"-->
+                <!--android:textColor="#000000"-->
+                <!--android:textSize="17sp" />-->
+
+        <!--</RelativeLayout>-->
+
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_centerInParent="true"
-
-                android:paddingTop="11dp"
-                android:src="@drawable/ic_apple_menu" />
-
-            <TextView
-                android:id="@+id/side_menu_ios"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
-                android:paddingTop="11dp"
-                android:text="My IOS Devices"
-                android:textColor="#000000"
-                android:textSize="17sp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
+                android:paddingBottom="10dp"
                 android:layout_centerInParent="true"
                 android:paddingTop="11dp"
                 android:src="@drawable/ic_android11_menu" />
 
             <TextView
                 android:id="@+id/side_menu_android"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@drawable/ripple_effect"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
                 android:paddingRight="10dp"
                 android:paddingTop="11dp"
-                android:text="My Android Devices"
+                android:paddingBottom="10dp"
+                android:text="My Devices"
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="18sp" />
         </RelativeLayout>
 
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:paddingTop="11dp"-->
+                <!--android:src="@drawable/ic_usbmain_menu" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/side_menu_cables"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:background="@drawable/ripple_effect"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:paddingLeft="20dp"-->
+                <!--android:paddingRight="10dp"-->
+                <!--android:paddingTop="11dp"-->
+                <!--android:text="My Cables"-->
+                <!--android:textColor="#000000"-->
+                <!--android:textSize="17sp" />-->
+        <!--</RelativeLayout>-->
+
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -131,46 +167,25 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
                 android:paddingTop="11dp"
-                android:src="@drawable/ic_usbmain_menu" />
-
-            <TextView
-                android:id="@+id/side_menu_cables"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
-                android:paddingTop="11dp"
-                android:text="My Cables"
-                android:textColor="#000000"
-                android:textSize="17sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerInParent="true"
-                android:paddingTop="11dp"
+                android:paddingBottom="10dp"
                 android:src="@drawable/ic_about_us" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@drawable/ripple_effect"
                 android:layout_height="wrap_content"
                 android:id="@+id/side_menu_about"
                 android:paddingLeft="20dp"
+                android:paddingBottom="10dp"
                 android:paddingRight="10dp"
                 android:paddingTop="11dp"
                 android:text="About section"
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="18sp" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -183,7 +198,8 @@
                 android:src="@drawable/ic_logout" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@drawable/ripple_effect"
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
                 android:paddingLeft="20dp"
@@ -192,7 +208,7 @@
                 android:paddingTop="11dp"
                 android:text="Logout"
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="18sp" />
         </RelativeLayout>
 
 

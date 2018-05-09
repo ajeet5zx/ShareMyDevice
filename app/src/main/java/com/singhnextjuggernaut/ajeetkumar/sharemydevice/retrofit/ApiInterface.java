@@ -5,6 +5,7 @@ import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceList;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.ResponseMessage;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,19 +27,19 @@ public interface ApiInterface {
     Call<UserData> registeruser(@Body UserData userData);
 
     @POST(ApiConstants.access_token_login)
-    Call<UserData> accesstokenlogin(@Header("access_token") String value);
+    Call<UserData> accesstokenlogin(@Header("Authorization") String value);
 
     @POST(ApiConstants.add_device)
-    Call<DeviceData> adddevice(@Header("access_token") String value ,@Body DeviceData deviceData);
+    Call<ResponseMessage> adddevice(@Header("Authorization") String value , @Body DeviceData deviceData);
 
     @POST(ApiConstants.logout)
-    Call<ResponseMessage> logout(@Header("access_token") String value);
+    Call<ResponseMessage> logout(@Header("Authorization") String value);
 
     @POST(ApiConstants.forgotpassword)
     Call<ResponseMessage> forgotpassword(@Body UserData userData);
 
     @POST(ApiConstants.resetpassword)
-    Call<UserData> resetpassword(@Header("access_token") String value ,@Body UserData userData);
+    Call<UserData> resetpassword(@Header("Authorization") String value ,@Body UserData userData);
 
     @POST(ApiConstants.devivelist)
     Call<List<DeviceData>> devicelist(@Header("Authorization") String value);
