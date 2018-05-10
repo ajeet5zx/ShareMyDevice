@@ -58,6 +58,7 @@ public class MyAndroidDevices_adapter extends RecyclerView.Adapter<MyAndroidDevi
             status="FREE";
         }
         else {
+            holder.tv_status.setBackgroundResource(R.color.red);
             status="NOT FREE";
         }
         holder.tv_status.setText(status);

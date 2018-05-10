@@ -56,6 +56,7 @@ public class android_list_adapter extends RecyclerView.Adapter<android_list_adap
         }
         else {
             status="NOT FREE";
+            holder.tv_status.setBackgroundResource(R.color.red);
         }
         holder.tv_status.setText(status);
         holder.tv_owner_name.setText(""+ ((AbstractMap<String,String>) device.getOwnerId()).get("name"));

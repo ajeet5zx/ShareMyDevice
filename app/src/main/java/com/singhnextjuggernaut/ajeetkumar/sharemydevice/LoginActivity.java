@@ -1,7 +1,10 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
+import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +33,7 @@ import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiInterface;
 import java.util.List;
 import java.util.zip.Inflater;
 
+import de.javakaffee.kryoserializers.CollectionsEmptyListSerializer;
 import io.paperdb.Paper;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextView emailText,passwordText;
     Button loginButton,forgotpassButton;
+    RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         emailText = (EditText) findViewById(R.id.loginEmail);
         passwordText = (EditText) findViewById(R.id.loginPassword);
         loginButton = findViewById(R.id.loginButton);
+        relativeLayout=findViewById(R.id.login_screen);
         forgotpassButton = findViewById(R.id.forgotPassword);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                     userData.setDeviceToken(FirebaseInstanceId.getInstance().getToken());
                     Call<Data> call = ApiCaller.getApiInterface().login(userData);
                     call.enqueue(new Callback<Data>() {
+                        @TargetApi(Build.VERSION_CODES.M)
                         @Override
                         public void onResponse(Call<Data> call, Response<Data> response) {
                             if(response.isSuccessful()) {
@@ -73,6 +81,13 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(intent);
                             } else {
 
+                                Snackbar snackbar = Snackbar
+                                        .make(relativeLayout, "Email or Password is INVALID", Snackbar.LENGTH_LONG);
+                                View snackbar_view=snackbar.getView();
+                                snackbar_view.setBackgroundColor(getColor(R.color.red));
+                                snackbar.show();
+
+
                             }
                         }
 
@@ -82,6 +97,13 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d("SSGS","dgahAEhAEH");
                         }
                     });
+                }
+                else {
+                    Snackbar snackbar = Snackbar
+                            .make(relativeLayout, "Email or Password can't be Blank", Snackbar.LENGTH_LONG);
+                    View snackbar_view = snackbar.getView();
+                    snackbar_view.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
                 }
             }
         });

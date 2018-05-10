@@ -1,5 +1,6 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.utils.Validations.Utils;
@@ -30,6 +32,7 @@ public class Register extends AppCompatActivity {
         password = (EditText) findViewById(R.id.registerPassword);
         confirm_password = (EditText) findViewById(R.id.confregPassword);
         submit = (Button) findViewById(R.id.registerButton);
+        LinearLayout linearLayout=findViewById(R.id.register_screen);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,12 +71,27 @@ public class Register extends AppCompatActivity {
 
                         } else {
                             //password not matched
+                            Snackbar snackbar = Snackbar
+                                    .make(linearLayout, "Passwords don't match", Snackbar.LENGTH_LONG);
+                            View snackbar_view = snackbar.getView();
+                            snackbar_view.setBackgroundColor(getResources().getColor(R.color.red));
+                            snackbar.show();
                         }
                     } else {
                         //password length err
+                        Snackbar snackbar = Snackbar
+                                .make(linearLayout, "Passwords length is less than 6", Snackbar.LENGTH_LONG);
+                        View snackbar_view = snackbar.getView();
+                        snackbar_view.setBackgroundColor(getResources().getColor(R.color.red));
+                        snackbar.show();
                     }
                 } else {
                     //all * fiels are required
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, "All fields are mandatory", Snackbar.LENGTH_LONG);
+                    View snackbar_view = snackbar.getView();
+                    snackbar_view.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
                 }
             }
         });
