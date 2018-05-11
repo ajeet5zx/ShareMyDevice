@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                     userData.setEmail(email);
                     userData.setPassword(password);
                     userData.setDeviceType(AppConstant.DEVICE_TYPE);
-                    userData.setDeviceToken(FirebaseInstanceId.getInstance().getToken());
+                    userData.setDeviceToken(CommonData.getFCMToken());
                     Call<Data> call = ApiCaller.getApiInterface().login(userData);
                     call.enqueue(new Callback<Data>() {
                         @TargetApi(Build.VERSION_CODES.M)
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void onResponse(Call<Data> call, Response<Data> response) {
                             if(response.isSuccessful()) {
                                 //Log.d("Token",response.body().getAccessToken());
-                                CommonData.saveAccessToken(response.body().getAccessToken());
+                                CommonData.saveAccessToken("Bearer "+response.body().getAccessToken());
                                 CommonData.saveRegisterationData(response.body());
                                 Intent intent = new Intent(LoginActivity.this, home.class);
                                 startActivity(intent);

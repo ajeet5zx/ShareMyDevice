@@ -1,9 +1,6 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice.fcm;
 
-/**
- * Developer: Saurabh Verma
- * Dated: 19-02-2017.
- */
+
 public interface FCMTokenInterface {
     /**
      * On token received.

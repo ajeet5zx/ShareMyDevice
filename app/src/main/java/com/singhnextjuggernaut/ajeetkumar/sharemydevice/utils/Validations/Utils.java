@@ -16,7 +16,7 @@ public class Utils {
 
     public static  boolean matchPassword(String s1, String s2) {
         Boolean check = true;
-        if(s1.compareTo(s1) !=0) {
+        if(s1.compareTo(s2) !=0 ) {
             check=false;
         }
         return check;

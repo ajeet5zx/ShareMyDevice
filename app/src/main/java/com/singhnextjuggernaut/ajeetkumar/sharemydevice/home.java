@@ -21,10 +21,12 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -54,22 +56,33 @@ public class home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Call<List<DeviceData>> device_list_api = ApiCaller.getApiInterface().devicelist("Bearer " + CommonData.getAccessToken());
+        Call<List<DeviceData>> device_list_api = ApiCaller.getApiInterface().devicelist(CommonData.getAccessToken());
         device_list_api.enqueue(new Callback<List<DeviceData>>() {
             @Override
             public void onResponse(Call<List<DeviceData>> call, Response<List<DeviceData>> response) {
                 if (response.isSuccessful()) {
-                    //Log.d("List",response.body().getDeviceDataList().get(0).toString());
-//                    Multimap<String,DeviceData> devivecelistmap = Multimaps.index(
-//                            response.body(),
-//                            input -> input.getDeviceCategory()
-//                    );
-//                    Log.d("Type",devivecelistmap.get(AppConstant.DEVICE_CATEGORY_ANDROID).getClass().getName());
-//                    CommonData.saveAndroidList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_ANDROID));
-//                    CommonData.saveIOSList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_IOS));
-//                    CommonData.saveCableList((List<DeviceData>)devivecelistmap.get(AppConstant.DEVICE_CATEGORY_CABLE));
-
-                    CommonData.saveAndroidList((List<DeviceData>) response.body());
+                    ArrayList<DeviceData> android,ios,cable;
+                    android = new ArrayList<>();
+                    ios = new ArrayList<>();
+                    cable = new ArrayList<>();
+                    for(int i=0;i<response.body().size();i++) {
+                        switch (response.body().get(i).getDeviceCategory()) {
+                            case AppConstant.DEVICE_CATEGORY_ANDROID : { android.add(response.body().get(i));
+                            break;
+                            }
+                            case AppConstant.DEVICE_CATEGORY_IOS : { ios.add(response.body().get(i));
+                            break;
+                            }
+                            case AppConstant.DEVICE_CATEGORY_CABLE: { cable.add(response.body().get(i));
+                            break;
+                            }
+                        }
+                    }
+                    CommonData.saveAndroidList(android);
+                    CommonData.saveIOSList(ios);
+                    CommonData.saveCableList(cable);
+                    //Log.d("BODYSIZE","BODYSIZE : "+response.body().size());
+                    //Log.d("COUNT","ADDROID:"+CommonData.getAndroidList().size()+" IOS:"+CommonData.getIOSList().size()+" Cable:"+CommonData.getCableList().size());
 
                 } else {
 

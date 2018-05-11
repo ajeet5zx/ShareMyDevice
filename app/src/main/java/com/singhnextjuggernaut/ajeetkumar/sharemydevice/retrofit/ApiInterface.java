@@ -43,4 +43,7 @@ public interface ApiInterface {
 
     @POST(ApiConstants.devivelist)
     Call<List<DeviceData>> devicelist(@Header("Authorization") String value);
+
+    @POST(ApiConstants.updateDeviceStatus)
+    Call<ResponseMessage> updateDeviceStatus(@Header("Authorization") String value, @Body DeviceData deviceData);
 }

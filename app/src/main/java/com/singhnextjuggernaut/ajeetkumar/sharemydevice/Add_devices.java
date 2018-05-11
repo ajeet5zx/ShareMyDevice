@@ -141,7 +141,7 @@ public class Add_devices extends AppCompatActivity {
     }
 
     public void addDeviceData(DeviceData deviceData) {
-        Call<ResponseMessage> call = ApiCaller.getApiInterface().adddevice("Bearer " + CommonData.getAccessToken(),deviceData);
+        Call<ResponseMessage> call = ApiCaller.getApiInterface().adddevice(CommonData.getAccessToken(),deviceData);
         call.enqueue(new Callback<ResponseMessage>() {
             @Override
             public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {

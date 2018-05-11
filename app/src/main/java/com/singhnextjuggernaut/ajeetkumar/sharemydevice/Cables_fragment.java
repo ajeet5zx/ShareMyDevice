@@ -45,7 +45,7 @@ public class Cables_fragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         //initializing the productlist
-        cables = CommonData.getAndroidList();
+        cables = CommonData.getCableList();
 
         //creating recyclerview adapter
         Cables_list_adapter adapter = new Cables_list_adapter(getActivity(),cables);
