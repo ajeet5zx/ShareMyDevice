@@ -24,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         login = (Button) findViewById(R.id.buttonLogin);
-        CommonData.updateFCMToken(FirebaseInstanceId.getInstance().getToken());
         //Paper.book("Device Data").write("deviceToken",FirebaseInstanceId.getInstance().getToken());
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                CommonData.updateFCMToken(FirebaseInstanceId.getInstance().getToken());
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
 
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                CommonData.updateFCMToken(FirebaseInstanceId.getInstance().getToken());
                 Intent intent = new Intent(MainActivity.this, Register.class);
                 startActivity(intent);
 

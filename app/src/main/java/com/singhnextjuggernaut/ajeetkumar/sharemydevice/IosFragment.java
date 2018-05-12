@@ -51,4 +51,10 @@ public class IosFragment extends Fragment {
        // return inflater.inflate(R.layout.fragment_ios, container, false);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        android_list_adapter adapter = new android_list_adapter(getActivity(),CommonData.getIOSList());
+        recyclerView.setAdapter(adapter);
+    }
 }

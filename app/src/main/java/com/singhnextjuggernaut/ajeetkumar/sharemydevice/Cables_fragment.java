@@ -51,22 +51,19 @@ public class Cables_fragment extends Fragment {
         Cables_list_adapter adapter = new Cables_list_adapter(getActivity(),cables);
 
 
-
-
-
-
-
-
-
-
-
-
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);
 
 
         return rootview;
        // return inflater.inflate(R.layout.fragment_cables_fragment, container, false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Cables_list_adapter adapter = new Cables_list_adapter(getActivity(),CommonData.getCableList());
+        recyclerView.setAdapter(adapter);
     }
 
 }

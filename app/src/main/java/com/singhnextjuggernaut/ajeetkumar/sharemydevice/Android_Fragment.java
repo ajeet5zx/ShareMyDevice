@@ -142,4 +142,10 @@ public class Android_Fragment extends Fragment {
         return rootview;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        android_list_adapter adapter = new android_list_adapter(getActivity(),CommonData.getAndroidList());
+        recyclerView.setAdapter(adapter);
+    }
 }
