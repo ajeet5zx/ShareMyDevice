@@ -6,9 +6,15 @@
     tools:context=".Android_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeToRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
    <android.support.v7.widget.RecyclerView
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:id="@+id/android_tab_recycler"
        android:background="@color/cardview_light_background"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </FrameLayout>

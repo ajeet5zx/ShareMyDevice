@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.ColorSpace;
 import android.media.MediaPlayer;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.ResponseMessage;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
@@ -41,6 +43,7 @@ public class MyAndroidDevices_adapter extends RecyclerView.Adapter<MyAndroidDevi
     //this context we will use to inflate the layout
     private Context mCtx;
     private LinearLayout linearLayout;
+    //SwipeRefreshLayout swiper;
 
     //we are storing all the products in a list
 
@@ -101,7 +104,7 @@ public class MyAndroidDevices_adapter extends RecyclerView.Adapter<MyAndroidDevi
                 {   DeviceData deviceData=new DeviceData();
                 deviceData.setId(device.getId());
                 deviceData.setAvailable(true);
-
+                deviceList.get(position).setAvailable(true);
                     changeStatus(deviceData);
                     Snackbar snackbar = Snackbar
                             .make(linearLayout, "Device marked as FREE", Snackbar.LENGTH_LONG);
@@ -111,12 +114,21 @@ public class MyAndroidDevices_adapter extends RecyclerView.Adapter<MyAndroidDevi
                 }
                 else
                 {
+
+                    DeviceData deviceData=new DeviceData();
+                    deviceData.setId(device.getId());
+                    deviceData.setAvailable(false);
+                    deviceList.get(position).setAvailable(false);
+                    changeStatus(deviceData);
                     Snackbar snackbar = Snackbar
                             .make(linearLayout, "Device marked Not FREE", Snackbar.LENGTH_LONG);
                     View snackbar_view = snackbar.getView();
                     snackbar_view.setBackgroundResource(R.color.red);
                     snackbar.show();
                 }
+                Data data = CommonData.getRegisterationData();
+                data.setDeviceData(deviceList);
+                CommonData.saveRegisterationData(data);
             }
         });
         if(device.getDeviceCategory().compareTo(AppConstant.DEVICE_CATEGORY_CABLE ) == 0) {
@@ -172,14 +184,17 @@ public class MyAndroidDevices_adapter extends RecyclerView.Adapter<MyAndroidDevi
 
         }
     }
+
+
+
     public void changeStatus(DeviceData deviceData) {
-        Call<ResponseMessage> call = ApiCaller.getApiInterface().adddevice(CommonData.getAccessToken(),deviceData);
+        Call<ResponseMessage> call = ApiCaller.getApiInterface().updateDeviceStatus(CommonData.getAccessToken(),deviceData);
         call.enqueue(new Callback<ResponseMessage>() {
             @Override
             public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
                 if(response.isSuccessful()) {
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Device marked sucessfully FREE", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, "Device status changed", Snackbar.LENGTH_LONG);
                     View snackbar_view = snackbar.getView();
                     snackbar_view.setBackgroundResource(R.color.red);
                     snackbar.show();

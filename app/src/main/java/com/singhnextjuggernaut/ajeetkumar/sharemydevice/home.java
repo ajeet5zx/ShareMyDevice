@@ -27,7 +27,9 @@ import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -101,7 +103,23 @@ public class home extends AppCompatActivity {
 
                 TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
-                mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+                mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout){
+
+                    @Override
+                    public void onPageSelected(int position) {
+                        super.onPageSelected(position);
+
+                        Fragment fragment = ((SectionsPagerAdapter)mViewPager.getAdapter()).getFragment(position);
+
+                        if (position ==1 && fragment != null)
+                        {
+                            fragment.onResume();
+                        }
+                    }
+
+
+
+                });
                 tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
             }
@@ -242,16 +260,33 @@ public class home extends AppCompatActivity {
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
+
+
+
     }
+
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
+
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+
+    private Map<Integer, String> mFragmentTags;
+    FragmentManager fm ;
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
+
+
+            mFragmentTags = new HashMap<Integer,String>();
+            this.fm=fm;
+
+
         }
 
         @Override
@@ -277,7 +312,30 @@ public class home extends AppCompatActivity {
             return 3;
         }
 
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            Object obj = super.instantiateItem(container, position);
+            if (obj instanceof Fragment) {
+                // record the fragment tag here.
+                Fragment f = (Fragment) obj;
+                String tag = f.getTag();
+                mFragmentTags.put(position, tag);
+            }
+            return obj;
+        }
 
+        public Fragment getFragment(int position) {
+            String tag = mFragmentTags.get(position);
+            if (tag == null)
+                return null;
+            return fm.findFragmentByTag(tag);
+        }
+
+
+        @Override
+        public void startUpdate(ViewGroup container) {
+            super.startUpdate(container);
+        }
     }
 
 }

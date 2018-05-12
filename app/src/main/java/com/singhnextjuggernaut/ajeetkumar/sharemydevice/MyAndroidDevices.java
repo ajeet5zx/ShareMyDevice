@@ -45,7 +45,11 @@ public class MyAndroidDevices extends AppCompatActivity {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        mAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(mAdapter);
+        recyclerView.invalidate();
+
+
 
 
 

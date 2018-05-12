@@ -40,11 +40,8 @@ public class IosFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         //initializing the productlist
-        devices = CommonData.getIOSList();
-
         //creating recyclerview adapter
-        android_list_adapter adapter = new android_list_adapter(getActivity(),devices);
-
+        android_list_adapter adapter = new android_list_adapter(getActivity(),CommonData.getIOSList());
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);
 
