@@ -14,4 +14,5 @@ public interface ApiConstants {
     String forgotpassword = "/api/v1/forgotpassword";
     String devivelist = "/api/v1/getDeviceList";
     String updateDeviceStatus = "/api/v1/updatedevicestatus";
+    String deviceNotification = "/api/v1/deviceNotification";
 }
