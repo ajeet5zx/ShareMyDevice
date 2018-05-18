@@ -1,5 +1,7 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
+import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -57,6 +59,21 @@ public class Register extends AppCompatActivity {
                                 @Override
                                 public void onResponse(Call<UserData> call, Response<UserData> response) {
                                     if(response.isSuccessful()) {
+
+                                        Snackbar snackbar = Snackbar
+                                                .make(linearLayout, "Registration successful ", Snackbar.LENGTH_LONG);
+                                        View snackbar_view = snackbar.getView();
+                                        snackbar_view.setBackgroundColor(getResources().getColor(R.color.green));
+                                        snackbar.show();
+                                        new Handler().postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+
+                                                Intent intent = new Intent(Register.this, LoginActivity.class);
+                                                startActivity(intent);
+                                            }
+                                        }, 1700);
+
 
                                     } else {
 

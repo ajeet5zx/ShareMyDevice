@@ -131,6 +131,7 @@ public class home extends AppCompatActivity {
         });
 
         side_menu = (ImageView) findViewById(R.id.menu_button);
+        side_menu.setVisibility(View.VISIBLE);
 
         side_menu.setOnClickListener(new View.OnClickListener()
 
