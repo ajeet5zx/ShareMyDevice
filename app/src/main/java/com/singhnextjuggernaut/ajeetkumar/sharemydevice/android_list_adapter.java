@@ -9,15 +9,25 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.internal.LinkedHashTreeMap;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.ResponseMessage;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiInterface;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /*
 CREATED BY AJEET SINGH
@@ -69,7 +79,28 @@ public class android_list_adapter extends RecyclerView.Adapter<android_list_adap
         holder.request_device_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                HashMap<String, Object>  body = new HashMap<>();
+                body.put("owner_id",((AbstractMap<String, String>) device.getOwnerId()).get("_id"));
+                body.put("message","Hi "+((AbstractMap<String, String>) device.getOwnerId()).get("name")+", "+CommonData.getRegisterationData().getUserData().getName()
+                        +" has requested for your device with Sticker No-"+((AbstractMap<String, String>) device.getOwnerId()).get("sticker_no"));
+                body.put("isAccepted",false);
+                body.put("isRequested",true);
+                body.put("assignee_id",CommonData.getRegisterationData().getUserData().getId());
+                body.put("device_id",device.getId());
+                Call<ResponseMessage> device_request = ApiCaller.getApiInterface().deviceNotification(CommonData.getAccessToken(),body);
+                device_request.enqueue(new Callback<ResponseMessage>() {
+                    @Override
+                    public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
+                        if(response.isSuccessful()){
+                            Toast.makeText(mCtx,response.body().getMessage(),Toast.LENGTH_LONG).show();
+                        } else {}
+                    }
 
+                    @Override
+                    public void onFailure(Call<ResponseMessage> call, Throwable t) {
+
+                    }
+                });
             }
         });
 

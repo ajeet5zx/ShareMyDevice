@@ -51,6 +51,6 @@ public interface ApiInterface {
     Call<ResponseMessage> updateDeviceStatus(@Header("Authorization") String value, @Body DeviceData deviceData);
 
     @POST(ApiConstants.deviceNotification)
-    Call<ResponseMessage> deviceNotification(@Header("Authorization") String value, @PartMap HashMap<String, RequestBody> map);
+    Call<ResponseMessage> deviceNotification(@Header("Authorization") String value, @Body HashMap<String, Object> map);
 
 }
