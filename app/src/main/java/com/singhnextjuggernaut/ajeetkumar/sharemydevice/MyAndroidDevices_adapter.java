@@ -198,9 +198,10 @@ public class MyAndroidDevices_adapter extends RecyclerView.Adapter<MyAndroidDevi
                     View snackbar_view = snackbar.getView();
                     snackbar_view.setBackgroundResource(R.color.red);
                     snackbar.show();
+
                 } else {
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, " loda lelo bc", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, " ", Snackbar.LENGTH_LONG);
                     View snackbar_view = snackbar.getView();
                     snackbar_view.setBackgroundResource(R.color.red);
                     snackbar.show();

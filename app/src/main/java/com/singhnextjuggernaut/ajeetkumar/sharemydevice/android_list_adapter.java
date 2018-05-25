@@ -82,7 +82,7 @@ public class android_list_adapter extends RecyclerView.Adapter<android_list_adap
                 HashMap<String, Object>  body = new HashMap<>();
                 body.put("owner_id",((AbstractMap<String, String>) device.getOwnerId()).get("_id"));
                 body.put("message","Hi "+((AbstractMap<String, String>) device.getOwnerId()).get("name")+", "+CommonData.getRegisterationData().getUserData().getName()
-                        +" has requested for your device with Sticker No-"+((AbstractMap<String, String>) device.getOwnerId()).get("sticker_no"));
+                        +" has requested for your device with Sticker No-"+device.getStickerNo());
                 body.put("isAccepted",false);
                 body.put("isRequested",true);
                 body.put("assignee_id",CommonData.getRegisterationData().getUserData().getId());
@@ -92,7 +92,7 @@ public class android_list_adapter extends RecyclerView.Adapter<android_list_adap
                     @Override
                     public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
                         if(response.isSuccessful()){
-                            Toast.makeText(mCtx,response.body().getMessage(),Toast.LENGTH_LONG).show();
+                            Toast.makeText(mCtx,"Request made, collect the device",Toast.LENGTH_LONG).show();
                         } else {}
                     }
 

@@ -1,6 +1,9 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -31,6 +35,7 @@ public class Add_devices extends AppCompatActivity {
     private TextView et_os_version_text, et_screen_resolution_text, et_screen_size_text;
     private Button save_data;
     private Spinner device_categories;
+    private LinearLayout linearLayout;
     private String device_category;
     private String  brand, model, sticker_no, os_version, screen_resolution, screen_size;
     @Override
@@ -51,6 +56,7 @@ public class Add_devices extends AppCompatActivity {
 
         device_categories = findViewById(R.id.add_device_category);
         save_data = findViewById(R.id.device_save);
+        linearLayout=findViewById(R.id.linear_layout_add_devices);
 
         ArrayList<String> categories = new ArrayList<>();
         categories.add(AppConstant.DEVICE_CATEGORY_ANDROID);
@@ -115,7 +121,11 @@ public class Add_devices extends AppCompatActivity {
 
                         addDeviceData(deviceData);
                     } else {
-                        //all fields are mandetory
+                        Snackbar snackbar = Snackbar
+                                .make(linearLayout, "All fields are required!", Snackbar.LENGTH_LONG);
+                        View snackbar_view = snackbar.getView();
+                        snackbar_view.setBackgroundResource(R.color.red);
+                        snackbar.show();
                     }
 
                 } else {
@@ -126,6 +136,7 @@ public class Add_devices extends AppCompatActivity {
                         deviceData.setResolution(screen_resolution);
                         deviceData.setScreen_size(screen_size);
                         deviceData.setOs(os_version);
+
                         deviceData.setDeviceCategory(device_category);
                         deviceData.setDeviceToken(CommonData.getFCMToken());
                         deviceData.setDeviceType(AppConstant.DEVICE_TYPE);
@@ -133,6 +144,12 @@ public class Add_devices extends AppCompatActivity {
                         addDeviceData(deviceData);
                     } else {
                         //all fields are mandetory
+                        Snackbar snackbar = Snackbar
+                                .make(linearLayout, "All fields are required!", Snackbar.LENGTH_LONG);
+                        View snackbar_view = snackbar.getView();
+                        snackbar_view.setBackgroundResource(R.color.red);
+                        snackbar.show();
+
                     }
                 }
             }
@@ -147,8 +164,30 @@ public class Add_devices extends AppCompatActivity {
             public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
                 if(response.isSuccessful()) {
 
+
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, "Device added sucessfully", Snackbar.LENGTH_LONG);
+                    View snackbar_view = snackbar.getView();
+                    snackbar_view.setBackgroundResource(R.color.green);
+                    snackbar.show();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            Intent intent = new Intent(Add_devices.this, home.class);
+                            startActivity(intent);
+                        }
+                    }, 1700);
+
+
+
                 } else {
-                    //respose is unsecessful
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, "Please check your connection or restart", Snackbar.LENGTH_LONG);
+                    View snackbar_view = snackbar.getView();
+                    snackbar_view.setBackgroundResource(R.color.red);
+                    snackbar.show();
                 }
             }
 
