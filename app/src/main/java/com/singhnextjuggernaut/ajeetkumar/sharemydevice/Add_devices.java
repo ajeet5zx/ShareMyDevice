@@ -179,6 +179,7 @@ public class Add_devices extends AppCompatActivity {
                             startActivity(intent);
                         }
                     }, 1700);
+                    //
 
 
 
