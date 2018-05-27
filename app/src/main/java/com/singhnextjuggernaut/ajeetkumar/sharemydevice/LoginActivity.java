@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView emailText,passwordText;
     Button loginButton,forgotpassButton;
     RelativeLayout relativeLayout;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         relativeLayout=findViewById(R.id.login_screen);
         forgotpassButton = findViewById(R.id.forgotPassword);
+        progressBar=findViewById(R.id.login_screen_progress);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +80,10 @@ public class LoginActivity extends AppCompatActivity {
                                 //Log.d("Token",response.body().getAccessToken());
                                 CommonData.saveAccessToken("Bearer "+response.body().getAccessToken());
                                 CommonData.saveRegisterationData(response.body());
+                                progressBar.setVisibility(View.VISIBLE);
+
                                 Intent intent = new Intent(LoginActivity.this, home.class);
+                                progressBar.setVisibility(View.GONE);
                                 startActivity(intent);
                             } else {
 

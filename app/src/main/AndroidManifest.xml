@@ -13,16 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Register" />
         <activity android:name=".LoginActivity" />
         <!-- [START firebase_service] -->
-        <service android:name=".fcm.MyFirebaseMessagingService"
+        <service
+            android:name=".fcm.MyFirebaseMessagingService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -31,7 +27,8 @@
         </service>
         <!-- [END firebase_service] -->
         <!-- [START firebase_iid_service] -->
-        <service android:name=".fcm.MyFirebaseInstanceIdService"
+        <service
+            android:name=".fcm.MyFirebaseInstanceIdService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -50,7 +47,14 @@
         <activity android:name=".MyCables" />
         <activity android:name=".AboutSection" />
         <activity android:name=".Add_devices" />
-        <activity android:name=".Add_cables"></activity>
+        <activity android:name=".Add_cables" />
+        <activity android:name=".splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -30,7 +30,7 @@ public interface ApiInterface {
     Call<UserData> registeruser(@Body UserData userData);
 
     @POST(ApiConstants.access_token_login)
-    Call<UserData> accesstokenlogin(@Header("Authorization") String value);
+    Call<Data> accesstokenlogin(@Header("Authorization") String value,  @Body HashMap<String, Object> map);
 
     @POST(ApiConstants.add_device)
     Call<ResponseMessage> adddevice(@Header("Authorization") String value , @Body DeviceData deviceData);

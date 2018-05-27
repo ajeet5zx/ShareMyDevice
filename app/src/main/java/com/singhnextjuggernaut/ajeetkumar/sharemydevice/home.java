@@ -1,8 +1,11 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,7 +25,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.ResponseMessage;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
 
@@ -193,9 +198,26 @@ public class home extends AppCompatActivity {
                 });
                 menu_logout.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent intent = new Intent(home.this, Profile.class);
-                        startActivity(intent);
+                        Call<ResponseMessage> call = ApiCaller.getApiInterface().logout(CommonData.getAccessToken());
+                        call.enqueue(new Callback<ResponseMessage>() {
+                            @TargetApi(Build.VERSION_CODES.M)
+                            @Override
+                            public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
+                                if(response.isSuccessful()) {
+
+                                    Intent intent = new Intent(home.this, MainActivity.class);
+                                    startActivity(intent);
+
+
+                                } else {}
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseMessage> call, Throwable t) {
+                            }
+                        });
                     }
+
                 });
 
 
