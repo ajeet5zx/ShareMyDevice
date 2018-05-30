@@ -1,12 +1,10 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -75,13 +73,13 @@ public class Add_devices extends AppCompatActivity {
         device_categories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if( position == 0 || position == 1 ) {;
+                if (position == 0 || position == 1) {
                     et_os_version.setVisibility(View.VISIBLE);
                     et_screen_resolution.setVisibility(View.VISIBLE);
                     et_screen_size.setVisibility(View.VISIBLE);
-                    et_os_version_text.setVisibility(view.VISIBLE);
-                    et_screen_resolution_text.setVisibility(view.VISIBLE);
-                    et_screen_size_text.setVisibility(view.VISIBLE);
+                    et_os_version_text.setVisibility(View.VISIBLE);
+                    et_screen_resolution_text.setVisibility(View.VISIBLE);
+                    et_screen_size_text.setVisibility(View.VISIBLE);
                     device_category = position == 0 ? AppConstant.DEVICE_CATEGORY_ANDROID : AppConstant.DEVICE_CATEGORY_IOS;
                 } else {
                     et_os_version.setVisibility(View.GONE);
@@ -89,9 +87,9 @@ public class Add_devices extends AppCompatActivity {
                     et_screen_size.setVisibility(View.GONE);
                     device_category = AppConstant.DEVICE_CATEGORY_CABLE;
 
-                    et_os_version_text.setVisibility(view.GONE);
-                    et_screen_resolution_text.setVisibility(view.GONE);
-                    et_screen_size_text.setVisibility(view.GONE);
+                    et_os_version_text.setVisibility(View.GONE);
+                    et_screen_resolution_text.setVisibility(View.GONE);
+                    et_screen_size_text.setVisibility(View.GONE);
                 }
             }
 
@@ -135,7 +133,7 @@ public class Add_devices extends AppCompatActivity {
                         deviceData.setStickerNo(sticker_no);
                         deviceData.setResolution(screen_resolution);
                         deviceData.setScreen_size(screen_size);
-                        deviceData.setOs(os_version);
+                        deviceData.setVersion(os_version);
 
                         deviceData.setDeviceCategory(device_category);
                         deviceData.setDeviceToken(CommonData.getFCMToken());
@@ -197,6 +195,6 @@ public class Add_devices extends AppCompatActivity {
                 Log.d("err",t.getMessage());
             }
         });
-    };
+    }
 }
 
