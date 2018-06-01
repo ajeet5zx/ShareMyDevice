@@ -3,33 +3,27 @@ package com.singhnextjuggernaut.ajeetkumar.sharemydevice.fcm;
 
 import android.app.Dialog;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.NotificationCompat;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.LoginActivity;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.MainActivity;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.MyInitilizer;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.utils.Foreground;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.MainActivity;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.R;
 
 import org.json.JSONObject;
 
 import java.util.Map;
 
-import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.ApiKeyConstant.BOOKINGID;
 import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.ApiKeyConstant.MESSAGE;
-import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.BOOKING_MODE;
-import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.FROM_NOTIFICATION;
-import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.NOTIFICATION_RECEIVED;
 import static com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant.NOTIFICATION_TYPE;
 
 
@@ -43,6 +37,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static NotificationManager notificationManager;
     private JSONObject jsonObject;
     private Dialog dialog;
+    private String channel_id = "1";
     private Intent intent;
 
     /**
@@ -67,23 +62,41 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      */
 
     public void showNotification(final Map<String, String> data) {
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
         final Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
         notificationIntent.putExtra(NOTIFICATION_TYPE, data.get(NOTIFICATION_TYPE));
+
         PendingIntent pi = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            NotificationChannel notificationChannel = new NotificationChannel(channel_id, "MAIN", NotificationManager.IMPORTANCE_HIGH);
+            notificationChannel.enableLights(true);
+            notificationChannel.enableVibration(true);
+            notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            notificationChannel.setSound(null, Notification.AUDIO_ATTRIBUTES_DEFAULT);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+
+
+
         Resources r = getResources();
-        Notification notification = new Notification.Builder(this)
+
+        NotificationCompat.Builder mNotificationCompact = new NotificationCompat.Builder(this, channel_id)
                 //     .setTicker(r.getString(R.string.app_name))
-                .setStyle(new Notification.BigTextStyle().bigText(data.get(MESSAGE)))
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(data.get(MESSAGE)))
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(r.getString(R.string.app_name))
                 .setContentText(data.get(MESSAGE))
                 .setContentIntent(pi)
                 .setDefaults(Notification.DEFAULT_ALL)
+                // .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setPriority(Notification.PRIORITY_MAX)
-                .setAutoCancel(true)
-                .build();
-        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notification);
+                .setAutoCancel(true);
+
+        mNotificationCompact.setChannelId(channel_id);
+        notificationManager.notify(0, mNotificationCompact.build());
 
     }
 }

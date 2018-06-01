@@ -4,10 +4,10 @@ import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,25 +17,14 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.ResponseMessage;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiInterface;
 
-import java.util.List;
-import java.util.zip.Inflater;
-
-import de.javakaffee.kryoserializers.CollectionsEmptyListSerializer;
-import io.paperdb.Paper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -101,6 +90,11 @@ public class LoginActivity extends AppCompatActivity {
                         public void onFailure(Call<Data> call, Throwable t) {
                             Log.d("err",t.getMessage());
                             Log.d("SSGS","dgahAEhAEH");
+                            Snackbar snackbar = Snackbar
+                                    .make(relativeLayout, "Internet connection lost", Snackbar.LENGTH_LONG);
+                            View snackbar_view = snackbar.getView();
+                            snackbar_view.setBackgroundColor(getColor(R.color.red));
+                            snackbar.show();
                         }
                     });
                 }
@@ -124,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                 .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        EditText email = (EditText) forgotpasswordView.findViewById(R.id.forgotPasswordEmail);
+                        EditText email = forgotpasswordView.findViewById(R.id.forgotPasswordEmail);
                         final String email_t = email.getText().toString().trim();
                         if(!TextUtils.isEmpty(email_t)) {
                             UserData userData = new UserData();
