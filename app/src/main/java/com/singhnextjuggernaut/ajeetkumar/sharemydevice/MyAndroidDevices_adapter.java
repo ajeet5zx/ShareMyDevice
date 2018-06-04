@@ -1,11 +1,7 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
 import android.content.Context;
-import android.graphics.ColorSpace;
-import android.media.MediaPlayer;
 import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -22,12 +17,9 @@ import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.ResponseMessage;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
 
-import java.util.AbstractMap;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -213,7 +205,7 @@ public class MyAndroidDevices_adapter extends RecyclerView.Adapter<MyAndroidDevi
                 Log.d("err",t.getMessage());
             }
         });
-    };
+    }
 }
 
 

@@ -15,4 +15,6 @@ public interface ApiConstants {
     String devivelist = "/api/v1/getDeviceList";
     String updateDeviceStatus = "/api/v1/updatedevicestatus";
     String deviceNotification = "/api/v1/deviceNotification";
+    String UpdateDevices = "/api/v1/updatedevices";
+    String UpdateUsers = "/api/v1//updateusers";
 }

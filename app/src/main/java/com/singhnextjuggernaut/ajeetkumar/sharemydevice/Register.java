@@ -1,10 +1,10 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -12,11 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.utils.Validations.Utils;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.utils.Validations.Utils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,11 +29,11 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        name = (EditText) findViewById(R.id.registerName);
-        email = (EditText) findViewById(R.id.registerEmail);
-        password = (EditText) findViewById(R.id.registerPassword);
-        confirm_password = (EditText) findViewById(R.id.confregPassword);
-        submit = (Button) findViewById(R.id.registerButton);
+        name = findViewById(R.id.registerName);
+        email = findViewById(R.id.registerEmail);
+        password = findViewById(R.id.registerPassword);
+        confirm_password = findViewById(R.id.confregPassword);
+        submit = findViewById(R.id.registerButton);
         LinearLayout linearLayout=findViewById(R.id.register_screen);
 
         submit.setOnClickListener(new View.OnClickListener() {

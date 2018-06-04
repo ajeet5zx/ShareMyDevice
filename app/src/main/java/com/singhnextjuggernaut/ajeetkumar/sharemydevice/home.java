@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,7 +24,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.ResponseMessage;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
@@ -103,10 +101,10 @@ public class home extends AppCompatActivity {
                 mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
                 // Set up the ViewPager with the sections adapter.
-                mViewPager = (ViewPager) findViewById(R.id.container);
+                mViewPager = findViewById(R.id.container);
                 mViewPager.setAdapter(mSectionsPagerAdapter);
 
-                TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+                TabLayout tabLayout = findViewById(R.id.tabs);
 
                 mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout){
 
@@ -135,7 +133,7 @@ public class home extends AppCompatActivity {
             }
         });
 
-        side_menu = (ImageView) findViewById(R.id.menu_button);
+        side_menu = findViewById(R.id.menu_button);
         side_menu.setVisibility(View.VISIBLE);
 
         side_menu.setOnClickListener(new View.OnClickListener()
@@ -149,12 +147,12 @@ public class home extends AppCompatActivity {
 
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View layout = inflater.inflate(R.layout.side_menu,
-                        (ViewGroup) findViewById(R.id.side_menu_card));
+                        findViewById(R.id.side_menu_card));
                 popupSort = new PopupWindow(layout, ViewGroup.LayoutParams.WRAP_CONTENT
                         , ViewGroup.LayoutParams.WRAP_CONTENT, true);
                 popupSort.showAtLocation(view, Gravity.TOP | Gravity.RIGHT, 0, 50);
                 popupSort.setElevation(10);
-                RelativeLayout back_dim_layout = (RelativeLayout) findViewById(R.id.bac_dim_layout);
+                RelativeLayout back_dim_layout = findViewById(R.id.bac_dim_layout);
 
 //                back_dim_layout.setVisibility(layout.VISIBLE);
 
@@ -279,7 +277,7 @@ public class home extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            TextView textView = rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
