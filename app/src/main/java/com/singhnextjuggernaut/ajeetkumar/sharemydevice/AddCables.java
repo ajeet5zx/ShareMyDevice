@@ -1,9 +1,9 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-public class Add_cables extends AppCompatActivity {
+public class AddCables extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

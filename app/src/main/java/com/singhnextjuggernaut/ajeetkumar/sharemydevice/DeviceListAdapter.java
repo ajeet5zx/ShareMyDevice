@@ -6,22 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.internal.LinkedHashTreeMap;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.ResponseMessage;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.UserData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiInterface;
+
+import org.json.JSONObject;
 
 import java.util.AbstractMap;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,7 +27,7 @@ import retrofit2.Response;
 /*
 CREATED BY AJEET SINGH
 */
-public class android_list_adapter extends RecyclerView.Adapter<android_list_adapter.ProductViewHolder> {
+public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.ProductViewHolder> {
 
     //this context we will use to inflate the layout
     private Context mCtx;
@@ -41,7 +36,7 @@ public class android_list_adapter extends RecyclerView.Adapter<android_list_adap
     private List<DeviceData> deviceList;
 
     //getting the context and product list with constructor
-    public android_list_adapter(Context mCtx, List<DeviceData> deviceList) {
+    public DeviceListAdapter(Context mCtx, List<DeviceData> deviceList) {
         this.mCtx = mCtx;
         this.deviceList = deviceList;
     }
@@ -63,6 +58,8 @@ public class android_list_adapter extends RecyclerView.Adapter<android_list_adap
         //binding the data with the viewholder views
         if(device.getAvailable()) {
             status="FREE";
+            holder.tv_status.setBackgroundResource(R.color.green);
+
         }
         else {
             status="NOT FREE";
@@ -75,7 +72,16 @@ public class android_list_adapter extends RecyclerView.Adapter<android_list_adap
         holder.tv_screen_size.setText(""+device.getScreen_size());
         holder.tv_resolution.setText(""+device.getResolution());
         holder.tv_brand_name.setText(""+device.getBrand());
-        holder.tv_model_name.setText(""+device.getModel());
+        holder.tv_model_name.setText(device.getModel());
+        try {
+
+
+            if ("" + ((AbstractMap<String, String>) device.getAssigneeId()).get("name") != null) {
+                holder.tv_current_owner.setText("" + ((AbstractMap<String, String>) device.getAssigneeId()).get("name"));
+            }
+        } catch (Exception e) {
+
+        }
         holder.request_device_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,17 +93,26 @@ public class android_list_adapter extends RecyclerView.Adapter<android_list_adap
                 body.put("isRequested",true);
                 body.put("assignee_id",CommonData.getRegisterationData().getUserData().getId());
                 body.put("device_id",device.getId());
+                body.put("device_data", device.getAssigneeId());
                 Call<ResponseMessage> device_request = ApiCaller.getApiInterface().deviceNotification(CommonData.getAccessToken(),body);
                 device_request.enqueue(new Callback<ResponseMessage>() {
                     @Override
                     public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
                         if(response.isSuccessful()){
                             Toast.makeText(mCtx,"Request made, collect the device",Toast.LENGTH_LONG).show();
-                        } else {}
+                        } else {
+                            try {
+                                JSONObject jObjError = new JSONObject(response.errorBody().string());
+                                Toast.makeText(mCtx, jObjError.getString("message"), Toast.LENGTH_LONG).show();
+                            } catch (Exception e) {
+                                Toast.makeText(mCtx, e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseMessage> call, Throwable t) {
+
 
                     }
                 });
@@ -116,7 +131,7 @@ public class android_list_adapter extends RecyclerView.Adapter<android_list_adap
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_status,tv_owner_name,tv_sticker_no,tv_android_version,tv_screen_size,tv_resolution,tv_brand_name,tv_model_name;
+        TextView tv_status, tv_current_owner, tv_owner_name, tv_sticker_no, tv_android_version, tv_screen_size, tv_resolution, tv_brand_name, tv_model_name;
         Button request_device_button;
 
         public ProductViewHolder(View itemView) {
@@ -130,6 +145,7 @@ public class android_list_adapter extends RecyclerView.Adapter<android_list_adap
             tv_brand_name = itemView.findViewById(R.id.brand_name);
             tv_model_name = itemView.findViewById(R.id.model_name);
             request_device_button = itemView.findViewById(R.id.request_button);
+            tv_current_owner = itemView.findViewById(R.id.current_owner);
         }
     }
 }

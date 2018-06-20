@@ -27,14 +27,14 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Cables_fragment extends Fragment {
+public class CableFragment extends Fragment {
 
     List<DeviceData> cables;
     RecyclerView recyclerView;
     SwipeRefreshLayout mSwipeRefreshLayout;
 
 
-    public Cables_fragment() {
+    public CableFragment() {
 
 
         // Required empty public constructor
@@ -89,7 +89,7 @@ public class Cables_fragment extends Fragment {
                             //initializing the productlist
                             cables = CommonData.getCableList();
                             //creating recyclerview adapter
-                            Cables_list_adapter adapter = new Cables_list_adapter(getActivity(), cables);
+                            CableListAdapter adapter = new CableListAdapter(getActivity(), cables);
                             //setting adapter to recyclerview
                             adapter.notifyDataSetChanged();
                             recyclerView.setAdapter(adapter);
@@ -106,7 +106,7 @@ public class Cables_fragment extends Fragment {
 //        setSupportActionBar(toolbar);
                         // Create the adapter that will return a fragment for each of the three
                         // primary sections of the activity.
-//                        mSectionsPagerAdapter = new home.SectionsPagerAdapter(getSupportFragmentManager());
+//                        mSectionsPagerAdapter = new HomeActivity.SectionsPagerAdapter(getSupportFragmentManager());
 //
 //                        // Set up the ViewPager with the sections adapter.
 //                        mViewPager = (ViewPager) findViewById(R.id.container);
@@ -139,7 +139,7 @@ public class Cables_fragment extends Fragment {
         cables = CommonData.getCableList();
 
         //creating recyclerview adapter
-        Cables_list_adapter adapter = new Cables_list_adapter(getActivity(),cables);
+        CableListAdapter adapter = new CableListAdapter(getActivity(), cables);
 
 
         //setting adapter to recyclerview
@@ -153,7 +153,7 @@ public class Cables_fragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Cables_list_adapter adapter = new Cables_list_adapter(getActivity(),CommonData.getCableList());
+        CableListAdapter adapter = new CableListAdapter(getActivity(), CommonData.getCableList());
         recyclerView.setAdapter(adapter);
     }
 

@@ -39,7 +39,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class home extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -166,31 +166,31 @@ public class home extends AppCompatActivity {
 
                 menu_profile.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent intent = new Intent(home.this, Profile.class);
+                        Intent intent = new Intent(HomeActivity.this, profile.class);
                         startActivity(intent);
                     }
                 });
 //                menu_ios.setOnClickListener(new View.OnClickListener() {
 //                    public void onClick(View v) {
-//                        Intent intent = new Intent(home.this, Add_devices.class);
+//                        Intent intent = new Intent(HomeActivity.this, AddDevices.class);
 //                        startActivity(intent);
 //                    }
 //                });
                 menu_android.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent intent = new Intent(home.this, MyAndroidDevices.class);
+                        Intent intent = new Intent(HomeActivity.this, MyAndroidDevices.class);
                         startActivity(intent);
                     }
                 });
 //                menu_cables.setOnClickListener(new View.OnClickListener() {
 //                    public void onClick(View v) {
-//                        Intent intent = new Intent(home.this, Add_cables.class);
+//                        Intent intent = new Intent(HomeActivity.this, AddCables.class);
 //                        startActivity(intent);
 //                    }
 //                });
                 menu_about.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent intent = new Intent(home.this, AboutSection.class);
+                        Intent intent = new Intent(HomeActivity.this, AboutSection.class);
                         startActivity(intent);
                     }
                 });
@@ -203,8 +203,9 @@ public class home extends AppCompatActivity {
                             public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
                                 if(response.isSuccessful()) {
 
-                                    Intent intent = new Intent(home.this, MainActivity.class);
+                                    Intent intent = new Intent(HomeActivity.this, MainActivity.class);
                                     startActivity(intent);
+                                    finish();
 
 
                                 } else {}
@@ -314,13 +315,13 @@ public class home extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    Android_Fragment tab1 = new Android_Fragment();
+                    AndroidFragment tab1 = new AndroidFragment();
                     return tab1;
                 case 1:
                     IosFragment tab2 = new IosFragment();
                     return tab2;
                 case 2:
-                    Cables_fragment tab3 = new Cables_fragment();
+                    CableFragment tab3 = new CableFragment();
                     return tab3;
                 default:
                     return null;

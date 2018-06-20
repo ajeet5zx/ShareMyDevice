@@ -28,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Add_devices extends AppCompatActivity {
+public class AddDevices extends AppCompatActivity {
     private EditText et_brand, et_model, et_sticker_no, et_os_version, et_screen_resolution, et_screen_size;
     private TextView et_os_version_text, et_screen_resolution_text, et_screen_size_text;
     private Button save_data;
@@ -173,7 +173,7 @@ public class Add_devices extends AppCompatActivity {
                         @Override
                         public void run() {
 
-                            Intent intent = new Intent(Add_devices.this, home.class);
+                            Intent intent = new Intent(AddDevices.this, HomeActivity.class);
                             startActivity(intent);
                         }
                     }, 1700);

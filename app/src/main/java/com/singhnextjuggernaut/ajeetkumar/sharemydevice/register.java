@@ -22,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Register extends AppCompatActivity {
+public class register extends AppCompatActivity {
     private EditText name,email,password,confirm_password;
     private Button submit;
     @Override
@@ -69,7 +69,7 @@ public class Register extends AppCompatActivity {
                                             @Override
                                             public void run() {
 
-                                                Intent intent = new Intent(Register.this, LoginActivity.class);
+                                                Intent intent = new Intent(register.this, loginActivity.class);
                                                 startActivity(intent);
                                             }
                                         }, 1700);

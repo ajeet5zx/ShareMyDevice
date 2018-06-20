@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                     CommonData.updateFCMToken(FirebaseInstanceId.getInstance().getToken());
-                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, loginActivity.class);
                     startActivity(intent);
             }
         });
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 CommonData.updateFCMToken(FirebaseInstanceId.getInstance().getToken());
-                Intent intent = new Intent(MainActivity.this, Register.class);
+                Intent intent = new Intent(MainActivity.this, com.singhnextjuggernaut.ajeetkumar.sharemydevice.register.class);
                 startActivity(intent);
 
             }

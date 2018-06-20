@@ -3,8 +3,8 @@ package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
@@ -60,7 +60,7 @@ public class splash extends AppCompatActivity {
                     CommonData.saveAccessToken("Bearer " + response.body().getAccessToken());
                     CommonData.saveRegisterationData(response.body());
 
-                    Intent intent = new Intent(splash.this, home.class);
+                    Intent intent = new Intent(splash.this, HomeActivity.class);
                     startActivity(intent);
 
 

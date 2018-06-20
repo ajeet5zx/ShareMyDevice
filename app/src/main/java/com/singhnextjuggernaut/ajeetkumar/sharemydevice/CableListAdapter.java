@@ -15,7 +15,7 @@ import java.util.List;
 
 /*
 CREATED BY AJEET SINGH
-*/public class Cables_list_adapter extends RecyclerView.Adapter<Cables_list_adapter.ProductViewHolder>{
+*/public class CableListAdapter extends RecyclerView.Adapter<CableListAdapter.ProductViewHolder> {
 
 
 
@@ -26,7 +26,7 @@ private Context mCtx;
 private List<DeviceData> deviceList;
 
 //getting the context and product list with constructor
-public Cables_list_adapter(Context mCtx, List<DeviceData> deviceList) {
+public CableListAdapter(Context mCtx, List<DeviceData> deviceList) {
         this.mCtx = mCtx;
         this.deviceList = deviceList;
         }

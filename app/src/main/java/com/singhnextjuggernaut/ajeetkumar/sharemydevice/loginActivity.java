@@ -30,7 +30,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class loginActivity extends AppCompatActivity {
 
     private TextView emailText,passwordText;
     Button loginButton,forgotpassButton;
@@ -66,14 +66,14 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<Data> call, Response<Data> response) {
                             if(response.isSuccessful()) {
-                                //Log.d("Token",response.body().getAccessToken());
+                                Log.d("Token", response.body().getAccessToken());
                                 CommonData.saveAccessToken("Bearer "+response.body().getAccessToken());
                                 CommonData.saveRegisterationData(response.body());
-                                progressBar.setVisibility(View.VISIBLE);
 
-                                Intent intent = new Intent(LoginActivity.this, home.class);
-                                progressBar.setVisibility(View.GONE);
+                                Intent intent = new Intent(loginActivity.this, HomeActivity.class);
+
                                 startActivity(intent);
+                                finish();
                             } else {
 
                                 Snackbar snackbar = Snackbar
@@ -111,8 +111,8 @@ public class LoginActivity extends AppCompatActivity {
         forgotpassButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                LayoutInflater inflater = LoginActivity.this.getLayoutInflater();
+                AlertDialog.Builder builder = new AlertDialog.Builder(loginActivity.this);
+                LayoutInflater inflater = loginActivity.this.getLayoutInflater();
                 final View forgotpasswordView = inflater.inflate(R.layout.forgot_password_diolog, null);
                 builder.setView(forgotpasswordView)
                 .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
@@ -129,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                                 public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
                                     if(response.isSuccessful()) {
                                         Log.d("Responce",response.body().toString());
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(loginActivity.this);
                                         builder.setMessage(response.body().getMessage())
                                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                             @Override

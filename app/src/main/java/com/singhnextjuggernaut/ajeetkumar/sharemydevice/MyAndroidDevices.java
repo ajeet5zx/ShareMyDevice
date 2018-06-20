@@ -30,7 +30,7 @@ import retrofit2.Response;
 public class MyAndroidDevices extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<DeviceData> myDeviceList;
-    private MyAndroidDevices_adapter mAdapter;
+    private MyAndroidDevicesAdapter mAdapter;
     private ImageButton adddevice;
     private LinearLayout linearLayout;
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -45,7 +45,7 @@ public class MyAndroidDevices extends AppCompatActivity {
         adddevice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MyAndroidDevices.this, Add_devices.class);
+                Intent intent = new Intent(MyAndroidDevices.this, AddDevices.class);
                 startActivity(intent);
             }
         });
@@ -59,7 +59,7 @@ public class MyAndroidDevices extends AppCompatActivity {
 
                 autologin();
                 myDeviceList = CommonData.getRegisterationData().getDeviceData();
-                mAdapter = new MyAndroidDevices_adapter(MyAndroidDevices.this, linearLayout, myDeviceList);
+                mAdapter = new MyAndroidDevicesAdapter(MyAndroidDevices.this, linearLayout, myDeviceList);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -73,7 +73,7 @@ public class MyAndroidDevices extends AppCompatActivity {
 
 
         myDeviceList = CommonData.getRegisterationData().getDeviceData();
-        mAdapter = new MyAndroidDevices_adapter(MyAndroidDevices.this, linearLayout, myDeviceList);
+        mAdapter = new MyAndroidDevicesAdapter(MyAndroidDevices.this, linearLayout, myDeviceList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -85,7 +85,7 @@ public class IosFragment extends Fragment {
                             //initializing the productlist
                             devices = CommonData.getIOSList();
                             //creating recyclerview adapter
-                            android_list_adapter adapter = new android_list_adapter(getActivity(), devices);
+                            DeviceListAdapter adapter = new DeviceListAdapter(getActivity(), devices);
                             //setting adapter to recyclerview
                             adapter.notifyDataSetChanged();
                             recyclerView.setAdapter(adapter);
@@ -102,7 +102,7 @@ public class IosFragment extends Fragment {
 //        setSupportActionBar(toolbar);
                         // Create the adapter that will return a fragment for each of the three
                         // primary sections of the activity.
-//                        mSectionsPagerAdapter = new home.SectionsPagerAdapter(getSupportFragmentManager());
+//                        mSectionsPagerAdapter = new HomeActivity.SectionsPagerAdapter(getSupportFragmentManager());
 //
 //                        // Set up the ViewPager with the sections adapter.
 //                        mViewPager = (ViewPager) findViewById(R.id.container);
@@ -151,7 +151,7 @@ public class IosFragment extends Fragment {
 
         //initializing the productlist
         //creating recyclerview adapter
-        android_list_adapter adapter = new android_list_adapter(getActivity(),CommonData.getIOSList());
+        DeviceListAdapter adapter = new DeviceListAdapter(getActivity(), CommonData.getIOSList());
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);
 
@@ -164,7 +164,7 @@ public class IosFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        android_list_adapter adapter = new android_list_adapter(getActivity(),CommonData.getIOSList());
+        DeviceListAdapter adapter = new DeviceListAdapter(getActivity(), CommonData.getIOSList());
         recyclerView.setAdapter(adapter);
     }
 }

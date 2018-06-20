@@ -3,9 +3,9 @@ package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.view.View;
 
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.ResponseMessage;
@@ -19,7 +19,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Profile extends AppCompatActivity {
+public class profile extends AppCompatActivity {
     EditText name, email, password, confirmPassowrd;
     Button save;
     @Override

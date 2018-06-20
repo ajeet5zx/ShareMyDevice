@@ -53,4 +53,8 @@ public interface ApiInterface {
 
     @POST(ApiConstants.UpdateUsers)
     Call<ResponseMessage> UpdateUsers(@Header("Authorization") String value, @Body HashMap<String, Object> map);
+
+    @POST(ApiConstants.ReturnDevice)
+    Call<ResponseMessage> ReturnDevice(@Header("Authorization") String value, @Body HashMap<String, Object> map);
+
 }

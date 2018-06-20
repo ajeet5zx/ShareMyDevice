@@ -14,8 +14,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
         </activity>
-        <activity android:name=".Register" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".register" />
+        <activity android:name=".loginActivity" />
         <!-- [START firebase_service] -->
         <service
             android:name=".fcm.MyFirebaseMessagingService"
@@ -38,16 +38,16 @@
         <!-- [END firebase_iid_service] -->
 
         <activity
-            android:name=".home"
+            android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Profile" />
+        <activity android:name=".profile" />
         <activity android:name=".MyAndroidDevices" />
-        <activity android:name=".MyIosDevices" />
+        <activity android:name=".myIosDevices" />
         <activity android:name=".MyCables" />
         <activity android:name=".AboutSection" />
-        <activity android:name=".Add_devices" />
-        <activity android:name=".Add_cables" />
+        <activity android:name=".AddDevices" />
+        <activity android:name=".AddCables" />
         <activity android:name=".splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

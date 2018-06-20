@@ -2,11 +2,8 @@ package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,14 +27,14 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Android_Fragment extends Fragment {
+public class AndroidFragment extends Fragment {
 
     List<DeviceData> devices;
     RecyclerView recyclerView;
     SwipeRefreshLayout mSwipeRefreshLayout;
 
 
-    public Android_Fragment() {
+    public AndroidFragment() {
         // Required empty public constructor
     }
 
@@ -87,7 +84,7 @@ public class Android_Fragment extends Fragment {
                             //initializing the productlist
                             devices = CommonData.getAndroidList();
                             //creating recyclerview adapter
-                            android_list_adapter adapter = new android_list_adapter(getActivity(),devices);
+                            DeviceListAdapter adapter = new DeviceListAdapter(getActivity(), devices);
                             //setting adapter to recyclerview
                             adapter.notifyDataSetChanged();
                             recyclerView.setAdapter(adapter);
@@ -104,7 +101,7 @@ public class Android_Fragment extends Fragment {
 //        setSupportActionBar(toolbar);
                         // Create the adapter that will return a fragment for each of the three
                         // primary sections of the activity.
-//                        mSectionsPagerAdapter = new home.SectionsPagerAdapter(getSupportFragmentManager());
+//                        mSectionsPagerAdapter = new HomeActivity.SectionsPagerAdapter(getSupportFragmentManager());
 //
 //                        // Set up the ViewPager with the sections adapter.
 //                        mViewPager = (ViewPager) findViewById(R.id.container);
@@ -133,7 +130,7 @@ public class Android_Fragment extends Fragment {
         //initializing the productlist
         devices = CommonData.getAndroidList();
         //creating recyclerview adapter
-        android_list_adapter adapter = new android_list_adapter(getActivity(),devices);
+        DeviceListAdapter adapter = new DeviceListAdapter(getActivity(), devices);
         //setting adapter to recyclerview
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
@@ -145,7 +142,7 @@ public class Android_Fragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        android_list_adapter adapter = new android_list_adapter(getActivity(),CommonData.getAndroidList());
+        DeviceListAdapter adapter = new DeviceListAdapter(getActivity(), CommonData.getAndroidList());
         recyclerView.setAdapter(adapter);
     }
 }
