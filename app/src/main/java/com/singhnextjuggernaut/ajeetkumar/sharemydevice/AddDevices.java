@@ -85,6 +85,7 @@ public class AddDevices extends AppCompatActivity {
                     et_os_version.setVisibility(View.GONE);
                     et_screen_resolution.setVisibility(View.GONE);
                     et_screen_size.setVisibility(View.GONE);
+                    et_model.setHint("Type c");
                     device_category = AppConstant.DEVICE_CATEGORY_CABLE;
 
                     et_os_version_text.setVisibility(View.GONE);

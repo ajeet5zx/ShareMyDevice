@@ -80,6 +80,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                            android:maxLength="20"
                             android:inputType="text"
                             android:paddingTop="10dp" />
 
@@ -99,6 +101,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
+                            android:maxLength="20"
                             android:layout_marginRight="20dp"
                             android:inputType="textEmailAddress"
                             android:paddingTop="10dp">
@@ -119,6 +122,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
+                            android:maxLength="10"
                             android:layout_marginRight="20dp"
                             android:inputType="textPassword"
                             android:paddingTop="10dp" />
@@ -135,6 +139,7 @@
                         <EditText
                             android:id="@+id/confregPassword"
                             android:layout_width="match_parent"
+                            android:maxLength="10"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
