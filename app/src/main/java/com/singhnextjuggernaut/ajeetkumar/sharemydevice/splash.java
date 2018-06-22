@@ -24,22 +24,18 @@ public class splash extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-
-
         autologin();
     }
     @Override
     protected void onRestart() {
         super.onRestart();
 
-        autologin();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        autologin();
+
     }
 
 
@@ -62,6 +58,7 @@ public class splash extends AppCompatActivity {
 
                     Intent intent = new Intent(splash.this, HomeActivity.class);
                     startActivity(intent);
+                    finish();
 
 
                 } else {
@@ -69,6 +66,7 @@ public class splash extends AppCompatActivity {
 
                     Intent intent = new Intent(splash.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
 
 
                 }
@@ -80,6 +78,7 @@ public class splash extends AppCompatActivity {
                 Log.d("SSGS", "dgahAEhAEH");
                 Intent intent = new Intent(splash.this, MainActivity.class);
                 startActivity(intent);
+                finish();
 
             }
         });

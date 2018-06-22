@@ -58,14 +58,14 @@ public class MyAndroidDevices extends AppCompatActivity {
             public void onRefresh() {
 
                 autologin();
-                myDeviceList = CommonData.getRegisterationData().getDeviceData();
-                mAdapter = new MyAndroidDevicesAdapter(MyAndroidDevices.this, linearLayout, myDeviceList);
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                recyclerView.setLayoutManager(mLayoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                mAdapter.notifyDataSetChanged();
-                recyclerView.setAdapter(mAdapter);
-                recyclerView.invalidate();
+//                    myDeviceList = CommonData.getRegisterationData().getDeviceData();
+//                    mAdapter = new MyAndroidDevicesAdapter(MyAndroidDevices.this, linearLayout, myDeviceList);
+//                    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+//                    recyclerView.setLayoutManager(mLayoutManager);
+//                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+//                    mAdapter.notifyDataSetChanged();
+//                    recyclerView.setAdapter(mAdapter);
+//                    recyclerView.invalidate();
 
                 mSwipeRefreshLayout.setRefreshing(false);
             }
@@ -98,6 +98,8 @@ public class MyAndroidDevices extends AppCompatActivity {
                     //Log.d("Token",response.body().getAccessToken());
                     CommonData.saveAccessToken("Bearer " + response.body().getAccessToken());
                     CommonData.saveRegisterationData(response.body());
+                    recreate();
+
 
 
                 } else {

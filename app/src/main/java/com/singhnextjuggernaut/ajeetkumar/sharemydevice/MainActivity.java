@@ -15,6 +15,7 @@ import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 public class MainActivity extends AppCompatActivity {
     private Button login;
     private Button register;
+    private int LoginIntent = 123;
 
 
     @Override
@@ -26,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    CommonData.updateFCMToken(FirebaseInstanceId.getInstance().getToken());
+                CommonData.updateFCMToken(FirebaseInstanceId.getInstance().getToken());
                 Intent intent = new Intent(MainActivity.this, loginActivity.class);
-                    startActivity(intent);
+                startActivityForResult(intent, LoginIntent);
             }
         });
         register = findViewById(R.id.buttonRegister);
@@ -43,15 +44,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == LoginIntent) {
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
         }
 
-
-
-
-
-
-
+    }
 }
 
 

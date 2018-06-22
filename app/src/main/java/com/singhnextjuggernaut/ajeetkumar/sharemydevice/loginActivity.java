@@ -2,7 +2,6 @@ package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -69,10 +68,7 @@ public class loginActivity extends AppCompatActivity {
                                 Log.d("Token", response.body().getAccessToken());
                                 CommonData.saveAccessToken("Bearer "+response.body().getAccessToken());
                                 CommonData.saveRegisterationData(response.body());
-
-                                Intent intent = new Intent(loginActivity.this, HomeActivity.class);
-
-                                startActivity(intent);
+                                setResult(RESULT_OK);
                                 finish();
                             } else {
 

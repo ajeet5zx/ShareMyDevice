@@ -43,72 +43,99 @@ public class register extends AppCompatActivity {
                 final String password_t = password.getText().toString().trim();
                 final String confirm_password_t = confirm_password.getText().toString().trim();
                 final String name_t = name.getText().toString().trim();
+                String Expn =
 
-                if(!TextUtils.isEmpty(email_t) && !TextUtils.isEmpty(password_t) && !TextUtils.isEmpty(confirm_password_t) && !TextUtils.isEmpty(name_t)) {
-                    if(Utils.chkLength(password_t,6) && Utils.chkLength(confirm_password_t,6)) {
-                        if(Utils.matchPassword(password_t,confirm_password_t)) {
-                            UserData data = new UserData();
-                            data.setName(name_t);
-                            data.setEmail(email_t);
-                            data.setPassword(password_t);
-                            data.setDeviceToken(CommonData.getFCMToken());
-                            data.setDeviceType(AppConstant.DEVICE_TYPE);
+                        "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
 
-                            Call<UserData> call = ApiCaller.getApiInterface().registeruser(data);
-                            call.enqueue(new Callback<UserData>() {
-                                @Override
-                                public void onResponse(Call<UserData> call, Response<UserData> response) {
-                                    if(response.isSuccessful()) {
+                                + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
 
-                                        Snackbar snackbar = Snackbar
-                                                .make(linearLayout, "Registration successful ", Snackbar.LENGTH_LONG);
-                                        View snackbar_view = snackbar.getView();
-                                        snackbar_view.setBackgroundColor(getResources().getColor(R.color.green));
-                                        snackbar.show();
-                                        new Handler().postDelayed(new Runnable() {
-                                            @Override
-                                            public void run() {
+                                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
 
-                                                Intent intent = new Intent(register.this, loginActivity.class);
-                                                startActivity(intent);
-                                            }
-                                        }, 1700);
+                                + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+
+                                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+
+                                + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+
+                if (email_t.matches(Expn) && email_t.length() > 0) {
 
 
-                                    } else {
+                    if (!TextUtils.isEmpty(email_t) && !TextUtils.isEmpty(password_t) && !TextUtils.isEmpty(confirm_password_t) && !TextUtils.isEmpty(name_t)) {
+                        if (Utils.chkLength(password_t, 6) && Utils.chkLength(confirm_password_t, 6)) {
+                            if (Utils.matchPassword(password_t, confirm_password_t)) {
+                                UserData data = new UserData();
+                                data.setName(name_t);
+                                data.setEmail(email_t);
+                                data.setPassword(password_t);
+                                data.setDeviceToken(CommonData.getFCMToken());
+                                data.setDeviceType(AppConstant.DEVICE_TYPE);
 
+                                Call<UserData> call = ApiCaller.getApiInterface().registeruser(data);
+                                call.enqueue(new Callback<UserData>() {
+                                    @Override
+                                    public void onResponse(Call<UserData> call, Response<UserData> response) {
+                                        if (response.isSuccessful()) {
+
+                                            Snackbar snackbar = Snackbar
+                                                    .make(linearLayout, "Registration successful ", Snackbar.LENGTH_LONG);
+                                            View snackbar_view = snackbar.getView();
+                                            snackbar_view.setBackgroundColor(getResources().getColor(R.color.green));
+                                            snackbar.show();
+                                            new Handler().postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+
+                                                    Intent intent = new Intent(register.this, loginActivity.class);
+                                                    startActivity(intent);
+                                                }
+                                            }, 1700);
+
+
+                                        } else {
+
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void onFailure(Call<UserData> call, Throwable t) {
-                                    Log.d("err",t.getMessage());
-                                }
-                            });
+                                    @Override
+                                    public void onFailure(Call<UserData> call, Throwable t) {
+                                        Log.d("err", t.getMessage());
+                                    }
+                                });
 
+                            } else {
+                                //password not matched
+                                Snackbar snackbar = Snackbar
+                                        .make(linearLayout, "Passwords don't match", Snackbar.LENGTH_LONG);
+                                View snackbar_view = snackbar.getView();
+                                snackbar_view.setBackgroundColor(getResources().getColor(R.color.red));
+                                snackbar.show();
+                            }
                         } else {
-                            //password not matched
+                            //password length err
                             Snackbar snackbar = Snackbar
-                                    .make(linearLayout, "Passwords don't match", Snackbar.LENGTH_LONG);
+                                    .make(linearLayout, "Passwords length is less than 6", Snackbar.LENGTH_LONG);
                             View snackbar_view = snackbar.getView();
                             snackbar_view.setBackgroundColor(getResources().getColor(R.color.red));
                             snackbar.show();
                         }
                     } else {
-                        //password length err
+                        //all * fiels are required
                         Snackbar snackbar = Snackbar
-                                .make(linearLayout, "Passwords length is less than 6", Snackbar.LENGTH_LONG);
+                                .make(linearLayout, "All fields are mandatory", Snackbar.LENGTH_LONG);
                         View snackbar_view = snackbar.getView();
                         snackbar_view.setBackgroundColor(getResources().getColor(R.color.red));
                         snackbar.show();
                     }
-                } else {
-                    //all * fiels are required
+                } else
+
+                {
+
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "All fields are mandatory", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, "Email format is incorrect", Snackbar.LENGTH_LONG);
                     View snackbar_view = snackbar.getView();
                     snackbar_view.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
+
                 }
             }
         });

@@ -16,7 +16,7 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.singhnextjuggernaut.ajeetkumar.sharemydevice.MainActivity;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.MyAndroidDevices;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.R;
 
 import org.json.JSONObject;
@@ -64,7 +64,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void showNotification(final Map<String, String> data) {
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        final Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
+        final Intent notificationIntent = new Intent(getApplicationContext(), MyAndroidDevices.class);
         notificationIntent.putExtra(NOTIFICATION_TYPE, data.get(NOTIFICATION_TYPE));
 
         PendingIntent pi = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);

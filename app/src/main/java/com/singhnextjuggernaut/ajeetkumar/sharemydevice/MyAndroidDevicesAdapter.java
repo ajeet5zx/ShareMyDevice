@@ -105,7 +105,7 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
                     Snackbar snackbar = Snackbar
                             .make(linearLayout, "Device marked as FREE", Snackbar.LENGTH_LONG);
                     View snackbar_view = snackbar.getView();
-                    snackbar_view.setBackgroundResource(R.color.red);
+                    snackbar_view.setBackgroundResource(R.color.grey);
                     snackbar.show();
                 } else {
 
@@ -117,7 +117,7 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
                     Snackbar snackbar = Snackbar
                             .make(linearLayout, "Device marked Not FREE", Snackbar.LENGTH_LONG);
                     View snackbar_view = snackbar.getView();
-                    snackbar_view.setBackgroundResource(R.color.red);
+                    snackbar_view.setBackgroundResource(R.color.grey);
                     snackbar.show();
                 }
                 Data data = CommonData.getRegisterationData();
@@ -200,15 +200,12 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
         }
 
 
-        if (device.getAssigneeId() != null && ((AbstractMap<String, String>) device.getAssigneeId()).get("name") != null) {
+        if (device.getAssigneeId() != null && ((AbstractMap<String, String>) device.getAssigneeId()).get("_id") != null) {
             Log.v("if", "if");
             holder.tv_current_owner.setText("" + ((AbstractMap<String, String>) device.getAssigneeId()).get("name"));
-            String s1, s2;
-            s1 = "" + ((AbstractMap<String, String>) device.getAssigneeId()).get("name");
-            s2 = "" + ((AbstractMap<String, String>) device.getOwnerId()).get("name");
-            int x = s1.compareTo(s2);
-            if (x != 0) {
-                holder.upper_cardview.setCardBackgroundColor(mCtx.getResources().getColor(R.color.red));
+
+            if ((((AbstractMap<String, String>) device.getOwnerId()).get("_id")).compareTo(CommonData.getRegisterationData().getUserData().getId()) != 0) {
+                holder.upper_cardview.setCardBackgroundColor(mCtx.getResources().getColor(R.color.grey));
                 holder.change_device_status.setVisibility(View.GONE);
                 holder.return_button.setVisibility(View.VISIBLE);
                 // holder.bottom_cardview.setVisibility(View.INVISIBLE);
@@ -217,6 +214,7 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
                 holder.bottom_layout.setVisibility(View.GONE);
                 holder.swipe_card.setVisibility(View.INVISIBLE);
                 holder.return_device_button.setVisibility(View.GONE);
+
 
             } else {
                 Log.v("else", "else");
@@ -228,6 +226,17 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
                 holder.bottom_layout.setVisibility(View.GONE);
                 holder.upper_cardview.setCardBackgroundColor(mCtx.getResources().getColor(R.color.colorPrimary));
                 holder.return_device_button.setVisibility(View.GONE);
+                String s1, s2;
+                s1 = "" + ((AbstractMap<String, String>) device.getAssigneeId()).get("name");
+                s2 = "" + ((AbstractMap<String, String>) device.getOwnerId()).get("name");
+                int x = s1.compareTo(s2);
+                if (x != 0)
+
+                {
+                    holder.change_device_status.setVisibility(View.GONE);
+                    holder.tv_owner_name.setVisibility(View.VISIBLE);
+                    holder.tv_owner_name.setText("Your is assigned!!");
+                }
             }
         }
     }
