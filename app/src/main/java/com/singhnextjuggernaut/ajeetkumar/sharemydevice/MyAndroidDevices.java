@@ -39,6 +39,7 @@ public class MyAndroidDevices extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_android_devices);
         adddevice = findViewById(R.id.android_add_button);
@@ -52,7 +53,7 @@ public class MyAndroidDevices extends AppCompatActivity {
         linearLayout = findViewById(R.id.my_android_devices);
         RecyclerView recyclerView = findViewById(R.id.my_android_devices_recycler);
 
-
+        // autologin();
         mSwipeRefreshLayout = findViewById(R.id.swipeToRefresh);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             public void onRefresh() {

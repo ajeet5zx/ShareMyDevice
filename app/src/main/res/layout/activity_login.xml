@@ -87,7 +87,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/enterUsername"
                             android:layout_marginLeft="20dp"
-                            android:maxLength="30"
+                            android:maxLength="40"
                             android:layout_marginRight="20dp"
                             android:paddingTop="15dp"
                             android:inputType="textEmailAddress"/>

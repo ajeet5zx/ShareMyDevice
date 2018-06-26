@@ -87,12 +87,12 @@ public class register extends AppCompatActivity {
                                                     @Override
                                                     public void run() {
 
-                                                        Intent intent = new Intent(register.this, loginActivity.class);
+                                                        Intent intent = new Intent(register.this, MainActivity.class);
                                                         startActivity(intent);
                                                         finish();
+
                                                     }
                                                 }, 1700);
-
 
                                             } else {
 

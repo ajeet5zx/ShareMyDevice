@@ -176,6 +176,7 @@ public class AddDevices extends AppCompatActivity {
 
                             Intent intent = new Intent(AddDevices.this, HomeActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                     }, 1700);
                     //

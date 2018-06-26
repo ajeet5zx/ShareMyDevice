@@ -6,4 +6,7 @@
     <color name="red">#C21807</color>
     <color name="green">#4CBB17</color>
     <color name="grey">#C0C0C0</color>
+    <color name="purple">#000000</color>
+    <color name="dark_blue">#cc33ff</color>
+    <color name="orange">#cc33ff</color>
 </resources>

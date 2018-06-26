@@ -101,7 +101,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:maxLength="20"
+                            android:maxLength="40"
                             android:layout_marginRight="20dp"
                             android:inputType="textEmailAddress"
                             android:paddingTop="10dp">

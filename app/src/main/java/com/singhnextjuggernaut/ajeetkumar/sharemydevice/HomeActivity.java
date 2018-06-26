@@ -167,6 +167,7 @@ public class HomeActivity extends AppCompatActivity {
                 menu_profile.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent(HomeActivity.this, profile.class);
+                        popupSort.dismiss();
                         startActivity(intent);
                     }
                 });
@@ -179,6 +180,7 @@ public class HomeActivity extends AppCompatActivity {
                 menu_android.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent(HomeActivity.this, MyAndroidDevices.class);
+                        popupSort.dismiss();
                         startActivity(intent);
                     }
                 });
@@ -191,6 +193,7 @@ public class HomeActivity extends AppCompatActivity {
                 menu_about.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent(HomeActivity.this, AboutSection.class);
+                        popupSort.dismiss();
                         startActivity(intent);
                     }
                 });
@@ -365,4 +368,5 @@ public class HomeActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+
 }

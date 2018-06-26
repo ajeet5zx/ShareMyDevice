@@ -83,6 +83,7 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
             holder.change_device_status.setChecked(false);
 
         }
+
         holder.tv_status.setText(status);
         //holder.tv_owner_name.setText(""+ ((AbstractMap<String,String>) device.getOwnerId()).get("name"));
         holder.tv_sticker_no.setText("" + device.getStickerNo());
@@ -91,11 +92,13 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
         holder.tv_resolution.setText("" + device.getResolution());
         holder.tv_brand_name.setText("" + device.getBrand());
         holder.tv_model_name.setText("" + device.getModel());
+        holder.status_message.setText("Change status");
 
 
         holder.change_device_status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton cb, boolean on) {
+                String status;
                 if (on) {
                     DeviceData deviceData = new DeviceData();
                     deviceData.setId(device.getId());
@@ -105,8 +108,14 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
                     Snackbar snackbar = Snackbar
                             .make(linearLayout, "Device marked as FREE", Snackbar.LENGTH_LONG);
                     View snackbar_view = snackbar.getView();
-                    snackbar_view.setBackgroundResource(R.color.grey);
+                    snackbar_view.setBackgroundResource(R.color.green);
                     snackbar.show();
+
+                    status = "FREE";
+                    holder.tv_status.setBackgroundResource(R.color.green);
+                    holder.tv_status.setText(status);
+
+
                 } else {
 
                     DeviceData deviceData = new DeviceData();
@@ -115,10 +124,14 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
                     deviceList.get(position).setAvailable(false);
                     changeStatus(deviceData);
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Device marked Not FREE", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, "Device marked as BUSY", Snackbar.LENGTH_LONG);
                     View snackbar_view = snackbar.getView();
-                    snackbar_view.setBackgroundResource(R.color.grey);
+                    snackbar_view.setBackgroundResource(R.color.red);
                     snackbar.show();
+
+                    status = "NOT FREE";
+                    holder.tv_status.setText(status);
+                    holder.tv_status.setBackgroundResource(R.color.red);
                 }
                 Data data = CommonData.getRegisterationData();
                 data.setDeviceData(deviceList);
@@ -208,6 +221,7 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
                 holder.upper_cardview.setCardBackgroundColor(mCtx.getResources().getColor(R.color.grey));
                 holder.change_device_status.setVisibility(View.GONE);
                 holder.return_button.setVisibility(View.VISIBLE);
+                holder.status_message.setText("return device!!");
                 // holder.bottom_cardview.setVisibility(View.INVISIBLE);
 //                RelativeLayout.LayoutParams parms = new RelativeLayout.LayoutParams(0,0);
 //                holder.bottom_layout.setLayoutParams(parms);
@@ -235,6 +249,7 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
                 {
                     holder.change_device_status.setVisibility(View.GONE);
                     holder.tv_owner_name.setVisibility(View.VISIBLE);
+                    holder.status_message.setText("Message");
                     holder.tv_owner_name.setText("Your is assigned!!");
                 }
             }
@@ -253,11 +268,11 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
             @Override
             public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
                 if (response.isSuccessful()) {
-                    Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Device status changed", Snackbar.LENGTH_LONG);
-                    View snackbar_view = snackbar.getView();
-                    snackbar_view.setBackgroundResource(R.color.red);
-                    snackbar.show();
+//                    Snackbar snackbar = Snackbar
+//                            .make(linearLayout, "Device status changed", Snackbar.LENGTH_LONG);
+//                    View snackbar_view = snackbar.getView();
+//                    snackbar_view.setBackgroundResource(R.color.green);
+//                    snackbar.show();
 
                 } else {
                     Snackbar snackbar = Snackbar
@@ -277,7 +292,7 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_status, tv_owner_name, tv_sticker_no, tv_android_version, tv_screen_size, tv_resolution, tv_brand_name, tv_model_name, tv_current_owner;
+        TextView status_message, tv_status, tv_owner_name, tv_sticker_no, tv_android_version, tv_screen_size, tv_resolution, tv_brand_name, tv_model_name, tv_current_owner;
         Button return_device_button;
         CardView bottom_cardview, upper_cardview;
         LinearLayout swipe_card;
@@ -305,6 +320,7 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
             upper_cardview = itemView.findViewById(R.id.android_list_item_cardview);
             swipe_card = itemView.findViewById(R.id.swipe_bar);
             return_button = itemView.findViewById(R.id.return_button);
+            status_message = itemView.findViewById(R.id.status_message);
 
         }
     }
