@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 CommonData.updateFCMToken(FirebaseInstanceId.getInstance().getToken());
                 Intent intent = new Intent(MainActivity.this, com.singhnextjuggernaut.ajeetkumar.sharemydevice.register.class);
                 startActivity(intent);
-                finish();
 
             }
         });

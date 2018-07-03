@@ -163,6 +163,7 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
                         @Override
                         public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
                             if (response.isSuccessful()) {
+
                                 Toast.makeText(mCtx, "Return request made!!", Toast.LENGTH_LONG).show();
                             } else {
                             }
@@ -196,6 +197,13 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
                         @Override
                         public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
                             if (response.isSuccessful()) {
+                                MyAndroidDevices activity = MyAndroidDevices.instance;
+
+                                if (activity != null) {
+                                    // we are calling here activity's method
+                                    activity.autologin();
+                                }
+
                                 Toast.makeText(mCtx, "Return request made!!", Toast.LENGTH_LONG).show();
                             } else {
                             }
@@ -324,6 +332,7 @@ public class MyAndroidDevicesAdapter extends RecyclerView.Adapter<MyAndroidDevic
 
         }
     }
+
 }
 
 

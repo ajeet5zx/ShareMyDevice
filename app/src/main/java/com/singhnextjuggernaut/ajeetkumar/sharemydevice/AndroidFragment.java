@@ -44,7 +44,7 @@ public class AndroidFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
+        getData();
 
         // Inflate the layout for this fragment
         View rootview=inflater.inflate(R.layout.fragment_android_, container, false);
@@ -53,72 +53,7 @@ public class AndroidFragment extends Fragment {
         mSwipeRefreshLayout=rootview.findViewById(R.id.swipeToRefresh);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             public void onRefresh() {
-                Call<List<DeviceData>> device_list_api = ApiCaller.getApiInterface().devicelist(CommonData.getAccessToken());
-                device_list_api.enqueue(new Callback<List<DeviceData>>() {
-                    @Override
-                    public void onResponse(Call<List<DeviceData>> call, Response<List<DeviceData>> response) {
-                        if (response.isSuccessful()) {
-                            ArrayList<DeviceData> android,ios,cable;
-                            android = new ArrayList<>();
-                            ios = new ArrayList<>();
-                            cable = new ArrayList<>();
-                            for(int i=0;i<response.body().size();i++) {
-                                switch (response.body().get(i).getDeviceCategory()) {
-                                    case AppConstant.DEVICE_CATEGORY_ANDROID : { android.add(response.body().get(i));
-                                        break;
-                                    }
-                                    case AppConstant.DEVICE_CATEGORY_IOS : { ios.add(response.body().get(i));
-                                        break;
-                                    }
-                                    case AppConstant.DEVICE_CATEGORY_CABLE: { cable.add(response.body().get(i));
-                                        break;
-                                    }
-                                }
-                            }
-                            CommonData.saveAndroidList(android);
-                            CommonData.saveIOSList(ios);
-                            CommonData.saveCableList(cable);
-                            recyclerView.removeAllViews();
-                            recyclerView.setHasFixedSize(true);
-                            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                            //initializing the productlist
-                            devices = CommonData.getAndroidList();
-                            //creating recyclerview adapter
-                            DeviceListAdapter adapter = new DeviceListAdapter(getActivity(), devices);
-                            //setting adapter to recyclerview
-                            adapter.notifyDataSetChanged();
-                            recyclerView.setAdapter(adapter);
-                            recyclerView.invalidate();
-                            //Log.d("BODYSIZE","BODYSIZE : "+response.body().size());
-                            //Log.d("COUNT","ADDROID:"+CommonData.getAndroidList().size()+" IOS:"+CommonData.getIOSList().size()+" Cable:"+CommonData.getCableList().size());
-
-                        } else {
-
-                        }
-
-
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-                        // Create the adapter that will return a fragment for each of the three
-                        // primary sections of the activity.
-//                        mSectionsPagerAdapter = new HomeActivity.SectionsPagerAdapter(getSupportFragmentManager());
-//
-//                        // Set up the ViewPager with the sections adapter.
-//                        mViewPager = (ViewPager) findViewById(R.id.container);
-//                        mViewPager.setAdapter(mSectionsPagerAdapter);
-//
-//                        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-//
-//                        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-//                        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<DeviceData>> call, Throwable t) {
-                        Log.d("err", t.getMessage());
-                    }
-                });
+                getData();
 
                 mSwipeRefreshLayout.setRefreshing(false);
             }
@@ -137,6 +72,78 @@ public class AndroidFragment extends Fragment {
         recyclerView.invalidate();
 
         return rootview;
+    }
+
+    public void getData() {
+        Call<List<DeviceData>> device_list_api = ApiCaller.getApiInterface().devicelist(CommonData.getAccessToken());
+        device_list_api.enqueue(new Callback<List<DeviceData>>() {
+            @Override
+            public void onResponse(Call<List<DeviceData>> call, Response<List<DeviceData>> response) {
+                if (response.isSuccessful()) {
+                    ArrayList<DeviceData> android, ios, cable;
+                    android = new ArrayList<>();
+                    ios = new ArrayList<>();
+                    cable = new ArrayList<>();
+                    for (int i = 0; i < response.body().size(); i++) {
+                        switch (response.body().get(i).getDeviceCategory()) {
+                            case AppConstant.DEVICE_CATEGORY_ANDROID: {
+                                android.add(response.body().get(i));
+                                break;
+                            }
+                            case AppConstant.DEVICE_CATEGORY_IOS: {
+                                ios.add(response.body().get(i));
+                                break;
+                            }
+                            case AppConstant.DEVICE_CATEGORY_CABLE: {
+                                cable.add(response.body().get(i));
+                                break;
+                            }
+                        }
+                    }
+                    CommonData.saveAndroidList(android);
+                    CommonData.saveIOSList(ios);
+                    CommonData.saveCableList(cable);
+                    recyclerView.removeAllViews();
+                    recyclerView.setHasFixedSize(true);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    //initializing the productlist
+                    devices = CommonData.getAndroidList();
+                    //creating recyclerview adapter
+                    DeviceListAdapter adapter = new DeviceListAdapter(getActivity(), devices);
+                    //setting adapter to recyclerview
+                    adapter.notifyDataSetChanged();
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.invalidate();
+                    //Log.d("BODYSIZE","BODYSIZE : "+response.body().size());
+                    //Log.d("COUNT","ADDROID:"+CommonData.getAndroidList().size()+" IOS:"+CommonData.getIOSList().size()+" Cable:"+CommonData.getCableList().size());
+
+                } else {
+
+                }
+
+
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+                // Create the adapter that will return a fragment for each of the three
+                // primary sections of the activity.
+//                        mSectionsPagerAdapter = new HomeActivity.SectionsPagerAdapter(getSupportFragmentManager());
+//
+//                        // Set up the ViewPager with the sections adapter.
+//                        mViewPager = (ViewPager) findViewById(R.id.container);
+//                        mViewPager.setAdapter(mSectionsPagerAdapter);
+//
+//                        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+//
+//                        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+//                        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
+            }
+
+            @Override
+            public void onFailure(Call<List<DeviceData>> call, Throwable t) {
+                Log.d("err", t.getMessage());
+            }
+        });
     }
 
     @Override

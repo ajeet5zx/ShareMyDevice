@@ -41,6 +41,10 @@ public class profile extends AppCompatActivity {
             public void onClick(View v) {
                 HashMap<String,Object> body = new HashMap<>();
                 UserData user = new UserData();
+                final String password_t = password.getText().toString().trim();
+                final String confirm_password_t = confirmPassowrd.getText().toString().trim();
+
+
                 user.setDeviceType(AppConstant.DEVICE_TYPE);
                 user.setDeviceToken(CommonData.getFCMToken());
                 UserData userData = new UserData();

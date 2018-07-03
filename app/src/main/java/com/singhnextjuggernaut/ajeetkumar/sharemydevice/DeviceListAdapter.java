@@ -1,7 +1,10 @@
 package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
+import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.Data;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.ResponseMessage;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
@@ -99,7 +104,11 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Pr
                     @Override
                     public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
                         if(response.isSuccessful()){
+
+                            autologin();
                             Toast.makeText(mCtx,"Request made, collect the device",Toast.LENGTH_LONG).show();
+
+
                         } else {
                             try {
                                 JSONObject jObjError = new JSONObject(response.errorBody().string());
@@ -128,6 +137,38 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Pr
         return deviceList.size();
     }
 
+    public void autologin() {
+        HashMap<String, Object> body = new HashMap<>();
+        body.put("deviceToken", CommonData.getFCMToken());
+        body.put("deviceType", AppConstant.DEVICE_TYPE);
+        Call<Data> call = ApiCaller.getApiInterface().accesstokenlogin(CommonData.getAccessToken(), body);
+        call.enqueue(new Callback<Data>() {
+            @TargetApi(Build.VERSION_CODES.M)
+            @Override
+            public void onResponse(Call<Data>
+
+                                           call, Response<Data> response) {
+                if (response.isSuccessful()) {
+                    //Log.d("Token",response.body().getAccessToken());
+                    CommonData.saveAccessToken("Bearer " + response.body().getAccessToken());
+                    CommonData.saveRegisterationData(response.body());
+
+
+                } else {
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Data> call, Throwable t) {
+                Log.d("err", t.getMessage());
+                Log.d("SSGS", "dgahAEhAEH");
+            }
+        });
+
+
+    }
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
@@ -147,6 +188,7 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Pr
             request_device_button = itemView.findViewById(R.id.request_button);
             tv_current_owner = itemView.findViewById(R.id.current_owner);
         }
+
     }
 }
 

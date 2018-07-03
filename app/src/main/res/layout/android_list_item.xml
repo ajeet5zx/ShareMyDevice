@@ -26,8 +26,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="@android:color/background_light"
+                android:background="@drawable/rounded_corner"
                 android:text="REQUEST"
+                android:textColor="@color/orange"
                 android:id="@+id/request_button"
                 android:textSize="15sp"
                 android:textStyle="bold" />
