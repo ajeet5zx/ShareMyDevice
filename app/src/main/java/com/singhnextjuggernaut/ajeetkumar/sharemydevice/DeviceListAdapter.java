@@ -22,6 +22,7 @@ import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
 import org.json.JSONObject;
 
 import java.util.AbstractMap;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,11 +40,12 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Pr
 
     //we are storing all the products in a list
     private List<DeviceData> deviceList;
-
+    private List<DeviceData> deviceList2;
     //getting the context and product list with constructor
     public DeviceListAdapter(Context mCtx, List<DeviceData> deviceList) {
         this.mCtx = mCtx;
         this.deviceList = deviceList;
+        deviceList2 = new ArrayList<>(deviceList);
     }
 
     @Override
@@ -190,5 +192,6 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Pr
         }
 
     }
+
 }
 

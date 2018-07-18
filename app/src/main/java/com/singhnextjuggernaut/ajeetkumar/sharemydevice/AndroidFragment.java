@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.SearchView;
 
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
@@ -27,18 +30,54 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AndroidFragment extends Fragment {
+public class AndroidFragment extends Fragment implements Filterable {
 
     List<DeviceData> devices;
+    List<DeviceData> devices2;
+    SearchView searchView;
     RecyclerView recyclerView;
     SwipeRefreshLayout mSwipeRefreshLayout;
+    DeviceListAdapter adapter;
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<DeviceData> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(devices2);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (DeviceData item : devices2) {
+                    String s = item.getStickerNo();
+                    if (s.toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            devices.clear();
+            // deviceList.addAll(results.values);
+            devices.addAll((List<DeviceData>) results.values);
+            adapter.notifyDataSetChanged();
+        }
+    };
+
 
 
     public AndroidFragment() {
+        devices = CommonData.getAndroidList();
         // Required empty public constructor
+        devices2 = new ArrayList<>(devices);
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,13 +104,33 @@ public class AndroidFragment extends Fragment {
         //initializing the productlist
         devices = CommonData.getAndroidList();
         //creating recyclerview adapter
-        DeviceListAdapter adapter = new DeviceListAdapter(getActivity(), devices);
+        adapter = new DeviceListAdapter(getActivity(), devices);
         //setting adapter to recyclerview
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
         recyclerView.invalidate();
+        searchView = rootview.findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                exampleFilter.filter(newText);
+                return false;
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                //Do something on collapse Searchview
+                return false;
+            }
+        });
         return rootview;
+
     }
 
     public void getData() {
@@ -109,7 +168,7 @@ public class AndroidFragment extends Fragment {
                     //initializing the productlist
                     devices = CommonData.getAndroidList();
                     //creating recyclerview adapter
-                    DeviceListAdapter adapter = new DeviceListAdapter(getActivity(), devices);
+                    adapter = new DeviceListAdapter(getActivity(), devices);
                     //setting adapter to recyclerview
                     adapter.notifyDataSetChanged();
                     recyclerView.setAdapter(adapter);
@@ -149,7 +208,11 @@ public class AndroidFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        DeviceListAdapter adapter = new DeviceListAdapter(getActivity(), CommonData.getAndroidList());
+        adapter = new DeviceListAdapter(getActivity(), CommonData.getAndroidList());
         recyclerView.setAdapter(adapter);
+    }
+
+    public Filter getFilter() {
+        return exampleFilter;
     }
 }

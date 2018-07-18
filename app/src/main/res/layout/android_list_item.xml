@@ -116,6 +116,7 @@
                         android:layout_alignParentStart="true"
                         android:paddingBottom="2dp"
                         android:text="Status"
+                        android:textStyle="italic"
                         android:textAllCaps="true"
                         android:textSize="7sp" />
 
@@ -125,6 +126,7 @@
                         android:layout_centerHorizontal="true"
                         android:paddingBottom="2dp"
                         android:text="current owner"
+                        android:textStyle="italic"
                         android:textAllCaps="true"
                         android:textColor="@color/dark_blue"
                         android:textSize="7sp"
@@ -139,6 +141,7 @@
                         android:paddingBottom="2dp"
                         android:text="sticker no"
                         android:textAllCaps="true"
+                        android:textStyle="italic"
                         android:textColor="@color/dark_blue"
                         android:textSize="7sp"
 
@@ -203,6 +206,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
+                        android:textStyle="italic"
                         android:paddingTop="2dp"
                         android:text="brand"
                         android:textAllCaps="true"
@@ -215,6 +219,7 @@
                         android:layout_centerHorizontal="true"
                         android:paddingTop="2dp"
                         android:text="model"
+                        android:textStyle="italic"
                         android:textAllCaps="true"
                         android:textColor="@color/orange"
                         android:textSize="7sp"
@@ -230,6 +235,7 @@
                         android:paddingTop="2dp"
                         android:text="real owner"
                         android:textAllCaps="true"
+                        android:textStyle="italic"
                         android:textColor="@color/orange"
                         android:textSize="7sp"
 
