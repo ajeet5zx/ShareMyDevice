@@ -10,12 +10,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.SearchView;
 
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.constant.AppConstant;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.data.DeviceData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.database.CommonData;
 import com.singhnextjuggernaut.ajeetkumar.sharemydevice.retrofit.ApiCaller;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,15 +31,63 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class IosFragment extends Fragment {
+public class IosFragment extends Fragment implements Filterable {
 
     List<DeviceData> devices;
+    List<DeviceData> devices2;
     RecyclerView recyclerView;
-    SwipeRefreshLayout mSwipeRefreshLayout;
+    DeviceListAdapter adapter;
+    SearchView searchView;
 
+    SwipeRefreshLayout mSwipeRefreshLayout;
     public IosFragment() {
+        devices=CommonData.getIOSList();
+        devices2 = new ArrayList<>(devices);
         // Required empty public constructor
     }
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<DeviceData> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(devices2);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (DeviceData item : devices2) {
+                    String s = item.getStickerNo();
+                    String s1=item.getBrand();
+                    String s2=item.getModel();
+                    String s3=item.getResolution();
+                    String s4=item.getScreen_size();
+                    String s5=item.getVersion();
+                    String s6=((AbstractMap<String,String>) item.getOwnerId()).get("name");
+
+                    if (s.toLowerCase().contains(filterPattern)||s1.toLowerCase().contains(filterPattern)||s2.toLowerCase().contains(filterPattern)||s3.toLowerCase().contains(filterPattern)||s4.toLowerCase().contains(filterPattern)||s5.toLowerCase().contains(filterPattern)||s6.toLowerCase().contains(filterPattern))
+                    {
+                        filteredList.add(item);
+                    }
+                }
+
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            devices.clear();
+            // deviceList.addAll(results.values);
+            devices.addAll((List<DeviceData>) results.values);
+            adapter.notifyDataSetChanged();
+        }
+    };
+
+
 
 
     @Override
@@ -85,7 +137,7 @@ public class IosFragment extends Fragment {
                             //initializing the productlist
                             devices = CommonData.getIOSList();
                             //creating recyclerview adapter
-                            DeviceListAdapter adapter = new DeviceListAdapter(getActivity(), devices);
+                            adapter = new DeviceListAdapter(getActivity(), devices);
                             //setting adapter to recyclerview
                             adapter.notifyDataSetChanged();
                             recyclerView.setAdapter(adapter);
@@ -155,6 +207,28 @@ public class IosFragment extends Fragment {
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);
 
+        searchView = rootview.findViewById(R.id.searchViewIos);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                exampleFilter.filter(newText);
+                return false;
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                //Do something on collapse Searchview
+                return false;
+            }
+        });
+
+
 
         return rootview;
         // Inflate the layout for this fragment
@@ -166,5 +240,8 @@ public class IosFragment extends Fragment {
         super.onResume();
         DeviceListAdapter adapter = new DeviceListAdapter(getActivity(), CommonData.getIOSList());
         recyclerView.setAdapter(adapter);
+    }
+    public Filter getFilter() {
+        return exampleFilter;
     }
 }

@@ -5,6 +5,19 @@
     android:layout_height="match_parent"
     tools:context=".IosFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <SearchView
+        android:id="@+id/searchViewIos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search Here">
+
+    </SearchView>
+
     <!-- TODO: Update blank fragment layout -->
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeToRefreshIos"
@@ -17,5 +30,6 @@
             android:id="@+id/ios_tab_recycler"
             android:background="@color/cardview_light_background"/>
     </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
 
 </FrameLayout>
