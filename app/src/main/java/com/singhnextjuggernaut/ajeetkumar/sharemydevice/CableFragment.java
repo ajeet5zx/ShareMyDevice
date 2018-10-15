@@ -47,7 +47,7 @@ public class CableFragment extends Fragment {
         // Inflate the layout for this fragment
 
         // Inflate the layout for this fragment
-        View rootview=inflater.inflate(R.layout.fragment_cables_fragment, container, false);
+        View rootview = inflater.inflate(R.layout.fragment_cables_fragment, container, false);
         //getting the recyclerview from xml
         recyclerView = rootview.findViewById(R.id.cable_tab_recycler);
 
@@ -130,7 +130,6 @@ public class CableFragment extends Fragment {
         });
 
 
-
         //recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -147,7 +146,7 @@ public class CableFragment extends Fragment {
 
 
         return rootview;
-       // return inflater.inflate(R.layout.fragment_cables_fragment, container, false);
+        // return inflater.inflate(R.layout.fragment_cables_fragment, container, false);
     }
 
     @Override

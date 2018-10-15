@@ -31,8 +31,8 @@ import retrofit2.Response;
 
 public class loginActivity extends AppCompatActivity {
 
-    private TextView emailText,passwordText;
-    Button loginButton,forgotpassButton;
+    private TextView emailText, passwordText;
+    Button loginButton, forgotpassButton;
     RelativeLayout relativeLayout;
     ProgressBar progressBar;
 
@@ -43,17 +43,17 @@ public class loginActivity extends AppCompatActivity {
         emailText = (EditText) findViewById(R.id.loginEmail);
         passwordText = (EditText) findViewById(R.id.loginPassword);
         loginButton = findViewById(R.id.loginButton);
-        relativeLayout=findViewById(R.id.login_screen);
+        relativeLayout = findViewById(R.id.login_screen);
         forgotpassButton = findViewById(R.id.forgotPassword);
-        progressBar=findViewById(R.id.login_screen_progress);
+        progressBar = findViewById(R.id.login_screen_progress);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Onclick","1");
+                Log.d("Onclick", "1");
                 final String email = emailText.getText().toString().trim();
                 final String password = passwordText.getText().toString().trim();
-                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
+                if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
                     UserData userData = new UserData();
                     userData.setEmail(email);
                     userData.setPassword(password);
@@ -64,9 +64,9 @@ public class loginActivity extends AppCompatActivity {
                         @TargetApi(Build.VERSION_CODES.M)
                         @Override
                         public void onResponse(Call<Data> call, Response<Data> response) {
-                            if(response.isSuccessful()) {
+                            if (response.isSuccessful()) {
                                 Log.d("Token", response.body().getAccessToken());
-                                CommonData.saveAccessToken("Bearer "+response.body().getAccessToken());
+                                CommonData.saveAccessToken("Bearer " + response.body().getAccessToken());
                                 CommonData.saveRegisterationData(response.body());
                                 setResult(RESULT_OK);
                                 finish();
@@ -74,7 +74,7 @@ public class loginActivity extends AppCompatActivity {
 
                                 Snackbar snackbar = Snackbar
                                         .make(relativeLayout, "Email or Password is INVALID", Snackbar.LENGTH_LONG);
-                                View snackbar_view=snackbar.getView();
+                                View snackbar_view = snackbar.getView();
                                 snackbar_view.setBackgroundColor(getColor(R.color.red));
                                 snackbar.show();
 
@@ -84,8 +84,8 @@ public class loginActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<Data> call, Throwable t) {
-                            Log.d("err",t.getMessage());
-                            Log.d("SSGS","dgahAEhAEH");
+                            Log.d("err", t.getMessage());
+                            Log.d("SSGS", "dgahAEhAEH");
                             Snackbar snackbar = Snackbar
                                     .make(relativeLayout, "Internet connection lost", Snackbar.LENGTH_LONG);
                             View snackbar_view = snackbar.getView();
@@ -93,8 +93,7 @@ public class loginActivity extends AppCompatActivity {
                             snackbar.show();
                         }
                     });
-                }
-                else {
+                } else {
                     Snackbar snackbar = Snackbar
                             .make(relativeLayout, "Email or Password can't be Blank", Snackbar.LENGTH_LONG);
                     View snackbar_view = snackbar.getView();
@@ -111,52 +110,52 @@ public class loginActivity extends AppCompatActivity {
                 LayoutInflater inflater = loginActivity.this.getLayoutInflater();
                 final View forgotpasswordView = inflater.inflate(R.layout.forgot_password_diolog, null);
                 builder.setView(forgotpasswordView)
-                .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        EditText email = forgotpasswordView.findViewById(R.id.forgotPasswordEmail);
-                        final String email_t = email.getText().toString().trim();
-                        if(!TextUtils.isEmpty(email_t)) {
-                            UserData userData = new UserData();
-                            userData.setEmail(email_t);
-                            Call<ResponseMessage> call = ApiCaller.getApiInterface().forgotpassword(userData);
-                            call.enqueue(new Callback<ResponseMessage>() {
-                                @Override
-                                public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
-                                    if(response.isSuccessful()) {
-                                        Log.d("Responce",response.body().toString());
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(loginActivity.this);
-                                        builder.setMessage(response.body().getMessage())
-                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                dialog.dismiss();
+                        .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                EditText email = forgotpasswordView.findViewById(R.id.forgotPasswordEmail);
+                                final String email_t = email.getText().toString().trim();
+                                if (!TextUtils.isEmpty(email_t)) {
+                                    UserData userData = new UserData();
+                                    userData.setEmail(email_t);
+                                    Call<ResponseMessage> call = ApiCaller.getApiInterface().forgotpassword(userData);
+                                    call.enqueue(new Callback<ResponseMessage>() {
+                                        @Override
+                                        public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
+                                            if (response.isSuccessful()) {
+                                                Log.d("Responce", response.body().toString());
+                                                AlertDialog.Builder builder = new AlertDialog.Builder(loginActivity.this);
+                                                builder.setMessage(response.body().getMessage())
+                                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                dialog.dismiss();
+                                                            }
+                                                        })
+                                                        .show();
+
+                                            } else {
+                                                //respose is unsecessful
                                             }
-                                        })
-                                        .show();
+                                        }
 
-                                    } else {
-                                        //respose is unsecessful
-                                    }
+                                        @Override
+                                        public void onFailure(Call<ResponseMessage> call, Throwable t) {
+                                            Log.d("err", t.getMessage());
+                                        }
+                                    });
+
+                                } else {
+                                    //email is empty
                                 }
-
-                                @Override
-                                public void onFailure(Call<ResponseMessage> call, Throwable t) {
-                                    Log.d("err",t.getMessage());
-                                }
-                            });
-
-                        } else {
-                            //email is empty
-                        }
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                })
-                .show();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
 
             }
         });

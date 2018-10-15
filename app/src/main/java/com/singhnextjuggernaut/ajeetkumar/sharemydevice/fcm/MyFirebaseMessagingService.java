@@ -80,7 +80,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
 
-
         Resources r = getResources();
 
         NotificationCompat.Builder mNotificationCompact = new NotificationCompat.Builder(this, channel_id)

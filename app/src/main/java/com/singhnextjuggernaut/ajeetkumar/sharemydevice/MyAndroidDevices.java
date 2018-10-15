@@ -37,7 +37,6 @@ public class MyAndroidDevices extends AppCompatActivity {
     SwipeRefreshLayout mSwipeRefreshLayout;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +98,6 @@ public class MyAndroidDevices extends AppCompatActivity {
                     CommonData.saveAccessToken("Bearer " + response.body().getAccessToken());
                     CommonData.saveRegisterationData(response.body());
                     recreate();
-
 
 
                 } else {

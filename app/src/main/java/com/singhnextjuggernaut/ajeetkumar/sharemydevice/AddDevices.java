@@ -35,7 +35,8 @@ public class AddDevices extends AppCompatActivity {
     private Spinner device_categories;
     private LinearLayout linearLayout;
     private String device_category;
-    private String  brand, model, sticker_no, os_version, screen_resolution, screen_size;
+    private String brand, model, sticker_no, os_version, screen_resolution, screen_size;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,13 +49,13 @@ public class AddDevices extends AppCompatActivity {
         et_screen_resolution = findViewById(R.id.device_resolution);
         et_screen_size = findViewById(R.id.device_screen_size);
 
-        et_os_version_text=findViewById(R.id.device_os_version_text);
-        et_screen_resolution_text=findViewById(R.id.device_resolution_text);
-        et_screen_size_text=findViewById(R.id.screen_size_text);
+        et_os_version_text = findViewById(R.id.device_os_version_text);
+        et_screen_resolution_text = findViewById(R.id.device_resolution_text);
+        et_screen_size_text = findViewById(R.id.screen_size_text);
 
         device_categories = findViewById(R.id.add_device_category);
         save_data = findViewById(R.id.device_save);
-        linearLayout=findViewById(R.id.linear_layout_add_devices);
+        linearLayout = findViewById(R.id.linear_layout_add_devices);
 
         ArrayList<String> categories = new ArrayList<>();
         categories.add(AppConstant.DEVICE_CATEGORY_ANDROID);
@@ -103,14 +104,14 @@ public class AddDevices extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DeviceData deviceData = new DeviceData();
-                brand=et_brand.getText().toString();
-                model=et_model.getText().toString();
-                sticker_no=et_sticker_no.getText().toString();
-                os_version=et_os_version.getText().toString();
-                screen_resolution=et_screen_resolution.getText().toString();
-                screen_size=et_screen_size.getText().toString();
-                if( device_category.compareTo(AppConstant.DEVICE_CATEGORY_CABLE) == 0 ) {
-                    if(Utils.chkLength(brand,1) && Utils.chkLength(model,1) && Utils.chkLength(sticker_no,1)) {
+                brand = et_brand.getText().toString();
+                model = et_model.getText().toString();
+                sticker_no = et_sticker_no.getText().toString();
+                os_version = et_os_version.getText().toString();
+                screen_resolution = et_screen_resolution.getText().toString();
+                screen_size = et_screen_size.getText().toString();
+                if (device_category.compareTo(AppConstant.DEVICE_CATEGORY_CABLE) == 0) {
+                    if (Utils.chkLength(brand, 1) && Utils.chkLength(model, 1) && Utils.chkLength(sticker_no, 1)) {
                         deviceData.setBrand(brand);
                         deviceData.setModel(model);
                         deviceData.setStickerNo(sticker_no);
@@ -128,7 +129,7 @@ public class AddDevices extends AppCompatActivity {
                     }
 
                 } else {
-                    if(Utils.chkLength(brand,1) && Utils.chkLength(model,1) && Utils.chkLength(sticker_no,1) && Utils.chkLength(os_version,1) && Utils.chkLength(screen_resolution,1) && Utils.chkLength(screen_size,1)) {
+                    if (Utils.chkLength(brand, 1) && Utils.chkLength(model, 1) && Utils.chkLength(sticker_no, 1) && Utils.chkLength(os_version, 1) && Utils.chkLength(screen_resolution, 1) && Utils.chkLength(screen_size, 1)) {
                         deviceData.setBrand(brand);
                         deviceData.setModel(model);
                         deviceData.setStickerNo(sticker_no);
@@ -157,11 +158,11 @@ public class AddDevices extends AppCompatActivity {
     }
 
     public void addDeviceData(DeviceData deviceData) {
-        Call<ResponseMessage> call = ApiCaller.getApiInterface().adddevice(CommonData.getAccessToken(),deviceData);
+        Call<ResponseMessage> call = ApiCaller.getApiInterface().adddevice(CommonData.getAccessToken(), deviceData);
         call.enqueue(new Callback<ResponseMessage>() {
             @Override
             public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
 
 
                     Snackbar snackbar = Snackbar
@@ -182,7 +183,6 @@ public class AddDevices extends AppCompatActivity {
                     //
 
 
-
                 } else {
                     Snackbar snackbar = Snackbar
                             .make(linearLayout, "Please check your connection or restart", Snackbar.LENGTH_LONG);
@@ -194,7 +194,7 @@ public class AddDevices extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseMessage> call, Throwable t) {
-                Log.d("err",t.getMessage());
+                Log.d("err", t.getMessage());
             }
         });
     }

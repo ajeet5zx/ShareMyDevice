@@ -12,7 +12,7 @@ CREATED BY AJEET SINGH
 
     public HomeAdapter(FragmentManager fm) {
         super(fm);
-        this.tabCount=tabCount;
+        this.tabCount = tabCount;
     }
 
     @Override

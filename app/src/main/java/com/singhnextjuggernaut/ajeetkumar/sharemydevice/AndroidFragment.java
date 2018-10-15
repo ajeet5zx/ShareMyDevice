@@ -50,15 +50,14 @@ public class AndroidFragment extends Fragment implements Filterable {
 
                 for (DeviceData item : devices2) {
                     String s = item.getStickerNo();
-                    String s1=item.getBrand();
-                    String s2=item.getModel();
-                    String s3=item.getResolution();
-                    String s4=item.getScreen_size();
-                    String s5=item.getVersion();
-                    String s6=((AbstractMap<String,String>) item.getOwnerId()).get("name");
+                    String s1 = item.getBrand();
+                    String s2 = item.getModel();
+                    String s3 = item.getResolution();
+                    String s4 = item.getScreen_size();
+                    String s5 = item.getVersion();
+                    String s6 = ((AbstractMap<String, String>) item.getOwnerId()).get("name");
 
-                    if (s.toLowerCase().contains(filterPattern)||s1.toLowerCase().contains(filterPattern)||s2.toLowerCase().contains(filterPattern)||s3.toLowerCase().contains(filterPattern)||s4.toLowerCase().contains(filterPattern)||s5.toLowerCase().contains(filterPattern)||s6.toLowerCase().contains(filterPattern))
-                    {
+                    if (s.toLowerCase().contains(filterPattern) || s1.toLowerCase().contains(filterPattern) || s2.toLowerCase().contains(filterPattern) || s3.toLowerCase().contains(filterPattern) || s4.toLowerCase().contains(filterPattern) || s5.toLowerCase().contains(filterPattern) || s6.toLowerCase().contains(filterPattern)) {
                         filteredList.add(item);
                     }
                 }
@@ -81,7 +80,6 @@ public class AndroidFragment extends Fragment implements Filterable {
     };
 
 
-
     public AndroidFragment() {
         devices = CommonData.getAndroidList();
         // Required empty public constructor
@@ -95,10 +93,10 @@ public class AndroidFragment extends Fragment implements Filterable {
         getData();
 
         // Inflate the layout for this fragment
-        View rootview=inflater.inflate(R.layout.fragment_android_, container, false);
+        View rootview = inflater.inflate(R.layout.fragment_android_, container, false);
         //getting the recyclerview from xml
-        recyclerView =  rootview.findViewById(R.id.android_tab_recycler);
-        mSwipeRefreshLayout=rootview.findViewById(R.id.swipeToRefresh);
+        recyclerView = rootview.findViewById(R.id.android_tab_recycler);
+        mSwipeRefreshLayout = rootview.findViewById(R.id.swipeToRefresh);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             public void onRefresh() {
                 getData();

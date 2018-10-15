@@ -22,6 +22,7 @@ import retrofit2.Response;
 public class profile extends AppCompatActivity {
     EditText name, email, password, confirmPassowrd;
     Button save;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +40,7 @@ public class profile extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HashMap<String,Object> body = new HashMap<>();
+                HashMap<String, Object> body = new HashMap<>();
                 UserData user = new UserData();
                 final String password_t = password.getText().toString().trim();
                 final String confirm_password_t = confirmPassowrd.getText().toString().trim();
@@ -50,17 +51,18 @@ public class profile extends AppCompatActivity {
                 UserData userData = new UserData();
                 userData.setName(name.getText().toString());
                 userData.setEmail(email.getText().toString());
-                body.put("user",user);
-                body.put("userData",userData);
-                Call<ResponseMessage> call = ApiCaller.getApiInterface().UpdateUsers(CommonData.getAccessToken(),body);
+                body.put("user", user);
+                body.put("userData", userData);
+                Call<ResponseMessage> call = ApiCaller.getApiInterface().UpdateUsers(CommonData.getAccessToken(), body);
                 call.enqueue(new Callback<ResponseMessage>() {
                     @Override
                     public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
 
                     }
+
                     @Override
                     public void onFailure(Call<ResponseMessage> call, Throwable t) {
-                        Log.d("err",t.getMessage());
+                        Log.d("err", t.getMessage());
                     }
                 });
 

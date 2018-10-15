@@ -41,6 +41,7 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Pr
     //we are storing all the products in a list
     private List<DeviceData> deviceList;
     private List<DeviceData> deviceList2;
+
     //getting the context and product list with constructor
     public DeviceListAdapter(Context mCtx, List<DeviceData> deviceList) {
         this.mCtx = mCtx;
@@ -59,26 +60,25 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Pr
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         //getting the product of the specified position
-            DeviceData device = deviceList.get(position);
+        DeviceData device = deviceList.get(position);
 
         String status;
         //binding the data with the viewholder views
-        if(device.getAvailable()) {
-            status="FREE";
+        if (device.getAvailable()) {
+            status = "FREE";
             holder.tv_status.setBackgroundResource(R.color.green);
 
-        }
-        else {
-            status="NOT FREE";
+        } else {
+            status = "NOT FREE";
             holder.tv_status.setBackgroundResource(R.color.red);
         }
         holder.tv_status.setText(status);
-        holder.tv_owner_name.setText(""+ ((AbstractMap<String,String>) device.getOwnerId()).get("name"));
-        holder.tv_sticker_no.setText(""+device.getStickerNo());
-        holder.tv_android_version.setText(""+device.getVersion());
-        holder.tv_screen_size.setText(""+device.getScreen_size());
-        holder.tv_resolution.setText(""+device.getResolution());
-        holder.tv_brand_name.setText(""+device.getBrand());
+        holder.tv_owner_name.setText("" + ((AbstractMap<String, String>) device.getOwnerId()).get("name"));
+        holder.tv_sticker_no.setText("" + device.getStickerNo());
+        holder.tv_android_version.setText("" + device.getVersion());
+        holder.tv_screen_size.setText("" + device.getScreen_size());
+        holder.tv_resolution.setText("" + device.getResolution());
+        holder.tv_brand_name.setText("" + device.getBrand());
         holder.tv_model_name.setText(device.getModel());
         try {
 
@@ -92,23 +92,23 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Pr
         holder.request_device_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HashMap<String, Object>  body = new HashMap<>();
-                body.put("owner_id",((AbstractMap<String, String>) device.getOwnerId()).get("_id"));
-                body.put("message","Hi "+((AbstractMap<String, String>) device.getOwnerId()).get("name")+", "+CommonData.getRegisterationData().getUserData().getName()
-                        +" has requested for your device with Sticker No-"+device.getStickerNo());
-                body.put("isAccepted",false);
-                body.put("isRequested",true);
-                body.put("assignee_id",CommonData.getRegisterationData().getUserData().getId());
-                body.put("device_id",device.getId());
+                HashMap<String, Object> body = new HashMap<>();
+                body.put("owner_id", ((AbstractMap<String, String>) device.getOwnerId()).get("_id"));
+                body.put("message", "Hi " + ((AbstractMap<String, String>) device.getOwnerId()).get("name") + ", " + CommonData.getRegisterationData().getUserData().getName()
+                        + " has requested for your device with Sticker No-" + device.getStickerNo());
+                body.put("isAccepted", false);
+                body.put("isRequested", true);
+                body.put("assignee_id", CommonData.getRegisterationData().getUserData().getId());
+                body.put("device_id", device.getId());
                 body.put("device_data", device.getAssigneeId());
-                Call<ResponseMessage> device_request = ApiCaller.getApiInterface().deviceNotification(CommonData.getAccessToken(),body);
+                Call<ResponseMessage> device_request = ApiCaller.getApiInterface().deviceNotification(CommonData.getAccessToken(), body);
                 device_request.enqueue(new Callback<ResponseMessage>() {
                     @Override
                     public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
-                        if(response.isSuccessful()){
+                        if (response.isSuccessful()) {
 
                             autologin();
-                            Toast.makeText(mCtx,"Request made, collect the device",Toast.LENGTH_LONG).show();
+                            Toast.makeText(mCtx, "Request made, collect the device", Toast.LENGTH_LONG).show();
 
 
                         } else {

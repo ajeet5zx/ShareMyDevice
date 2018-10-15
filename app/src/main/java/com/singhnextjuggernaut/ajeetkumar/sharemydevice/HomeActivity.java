@@ -66,20 +66,23 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<DeviceData>> call, Response<List<DeviceData>> response) {
                 if (response.isSuccessful()) {
-                    ArrayList<DeviceData> android,ios,cable;
+                    ArrayList<DeviceData> android, ios, cable;
                     android = new ArrayList<>();
                     ios = new ArrayList<>();
                     cable = new ArrayList<>();
-                    for(int i=0;i<response.body().size();i++) {
+                    for (int i = 0; i < response.body().size(); i++) {
                         switch (response.body().get(i).getDeviceCategory()) {
-                            case AppConstant.DEVICE_CATEGORY_ANDROID : { android.add(response.body().get(i));
-                            break;
+                            case AppConstant.DEVICE_CATEGORY_ANDROID: {
+                                android.add(response.body().get(i));
+                                break;
                             }
-                            case AppConstant.DEVICE_CATEGORY_IOS : { ios.add(response.body().get(i));
-                            break;
+                            case AppConstant.DEVICE_CATEGORY_IOS: {
+                                ios.add(response.body().get(i));
+                                break;
                             }
-                            case AppConstant.DEVICE_CATEGORY_CABLE: { cable.add(response.body().get(i));
-                            break;
+                            case AppConstant.DEVICE_CATEGORY_CABLE: {
+                                cable.add(response.body().get(i));
+                                break;
                             }
                         }
                     }
@@ -106,20 +109,18 @@ public class HomeActivity extends AppCompatActivity {
 
                 TabLayout tabLayout = findViewById(R.id.tabs);
 
-                mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout){
+                mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout) {
 
                     @Override
                     public void onPageSelected(int position) {
                         super.onPageSelected(position);
 
-                        Fragment fragment = ((SectionsPagerAdapter)mViewPager.getAdapter()).getFragment(position);
+                        Fragment fragment = ((SectionsPagerAdapter) mViewPager.getAdapter()).getFragment(position);
 
-                        if (position ==1 && fragment != null)
-                        {
+                        if (position == 1 && fragment != null) {
                             fragment.onResume();
                         }
                     }
-
 
 
                 });
@@ -159,7 +160,7 @@ public class HomeActivity extends AppCompatActivity {
                 TextView menu_profile = layout.findViewById(R.id.side_menu_profile);
                 //TextView menu_ios = layout.findViewById(R.id.side_menu_ios);
                 TextView menu_android = layout.findViewById(R.id.side_menu_android);
-               // TextView menu_cables = layout.findViewById(R.id.side_menu_cables);
+                // TextView menu_cables = layout.findViewById(R.id.side_menu_cables);
                 TextView menu_about = layout.findViewById(R.id.side_menu_about);
                 TextView menu_logout = layout.findViewById(R.id.side_menu_logout);
 
@@ -204,14 +205,15 @@ public class HomeActivity extends AppCompatActivity {
                             @TargetApi(Build.VERSION_CODES.M)
                             @Override
                             public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
-                                if(response.isSuccessful()) {
+                                if (response.isSuccessful()) {
 
                                     Intent intent = new Intent(HomeActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();
 
 
-                                } else {}
+                                } else {
+                                }
                             }
 
                             @Override
@@ -287,9 +289,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
 
-
     }
-
 
 
     /**
@@ -301,15 +301,15 @@ public class HomeActivity extends AppCompatActivity {
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 
-    private Map<Integer, String> mFragmentTags;
-    FragmentManager fm ;
+        private Map<Integer, String> mFragmentTags;
+        FragmentManager fm;
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
 
 
-            mFragmentTags = new HashMap<Integer,String>();
-            this.fm=fm;
+            mFragmentTags = new HashMap<Integer, String>();
+            this.fm = fm;
 
 
         }

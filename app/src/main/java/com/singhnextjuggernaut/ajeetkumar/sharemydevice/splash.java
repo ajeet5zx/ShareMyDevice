@@ -26,6 +26,7 @@ public class splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         autologin();
     }
+
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -39,8 +40,7 @@ public class splash extends AppCompatActivity {
     }
 
 
-    public void autologin()
-    {
+    public void autologin() {
         HashMap<String, Object> body = new HashMap<>();
         body.put("deviceToken", CommonData.getFCMToken());
         body.put("deviceType", AppConstant.DEVICE_TYPE);
