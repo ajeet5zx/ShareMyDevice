@@ -2,12 +2,12 @@ package com.singhnextjuggernaut.ajeetkumar.sharemydevice;
 
 /*
 CREATED BY AJEET SINGH
-*/public class device_list {
+*/public class DeviceList {
     private boolean status;
     private String owner_name, brand, model, version, screen_size, resolution;
     private int sticker_no;
 
-    public device_list(boolean status, String owner_name, String brand, String model, String version, String screen_size, String resolution, int sticker_no) {
+    public DeviceList(boolean status, String owner_name, String brand, String model, String version, String screen_size, String resolution, int sticker_no) {
         this.status = status;
         this.owner_name = owner_name;
         this.brand = brand;

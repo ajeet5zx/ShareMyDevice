@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.singhnextjuggernaut.ajeetkumar.sharemydevice.Add_devices">
+    android:id="@+id/linear_layout_add_devices"
+    tools:context="com.singhnextjuggernaut.ajeetkumar.sharemydevice.AddDevices">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -44,6 +45,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -55,9 +57,9 @@
                             android:text="SELECT TYPE" />
 
                         <Spinner
+                            android:id="@+id/add_device_category"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/add_device_category"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
                             android:layout_marginLeft="22dp"
@@ -82,7 +84,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
+                            android:hint="Samsung"
                             android:inputType="text"
+                            android:maxLength="10"
                             android:paddingTop="10dp" />
 
                         <TextView
@@ -101,7 +105,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
+                            android:hint="Galaxy s9"
                             android:inputType="textEmailAddress"
+                            android:maxLength="15"
                             android:paddingTop="10dp">
 
                         </EditText>
@@ -120,15 +126,17 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
-                            android:inputType="text"
+                            android:hint="100"
+                            android:inputType="number"
+                            android:maxLength="5"
                             android:paddingTop="10dp" />
 
                         <TextView
+                            android:id="@+id/device_os_version_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="22dp"
                             android:layout_marginRight="20dp"
-                            android:id="@+id/device_os_version_text"
                             android:paddingTop="10dp"
                             android:text="OS VERSION" />
 
@@ -138,13 +146,16 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
+                            android:hint="8.0-OREO"
                             android:inputType="text"
+                            android:maxLength="15"
                             android:paddingTop="10dp" />
+
                         <TextView
+                            android:id="@+id/device_resolution_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="22dp"
-                            android:id="@+id/device_resolution_text"
                             android:layout_marginRight="20dp"
                             android:paddingTop="10dp"
                             android:text="RESOLUTION" />
@@ -155,12 +166,15 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
+                            android:hint="1920 X 1080"
                             android:inputType="text"
+                            android:maxLength="10"
                             android:paddingTop="10dp" />
+
                         <TextView
+                            android:id="@+id/screen_size_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/screen_size_text"
                             android:layout_marginLeft="22dp"
                             android:layout_marginRight="20dp"
                             android:paddingTop="10dp"
@@ -172,7 +186,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
+                            android:hint="5.2 INCH"
                             android:inputType="text"
+                            android:maxLength="10"
                             android:paddingTop="10dp" />
 
                         <Button

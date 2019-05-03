@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.singhnextjuggernaut.ajeetkumar.sharemydevice.MainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.singhnextjuggernaut.ajeetkumar.sharemydevice.MainActivity">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/background_light"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+    android:background="@android:color/background_light"
+    tools:layout_editor_absoluteX="8dp"
+    tools:layout_editor_absoluteY="8dp">
         <include layout="@layout/titlebar"/>
-
-
-        <Button
+        <RelativeLayout
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_above="@id/buttonLogin"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:src="@drawable/invite_friends"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+    <Button
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,13 +48,13 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:padding="10dp"
-            android:background="@android:color/holo_blue_dark"
+            android:background="@android:color/holo_blue_bright"
             android:drawableStart="@drawable/register"
             android:text="REGISTER"
             android:textColor="@android:color/background_light" />
 
 
-    </RelativeLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

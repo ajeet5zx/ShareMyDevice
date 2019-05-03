@@ -3,8 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/login_screen"
     android:layout_height="match_parent"
-    tools:context="com.singhnextjuggernaut.ajeetkumar.sharemydevice.LoginActivity">
+    tools:context="com.singhnextjuggernaut.ajeetkumar.sharemydevice.loginActivity">
+  <ProgressBar
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:id="@+id/login_screen_progress"
+      android:visibility="gone"
+
+
+      />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -77,6 +87,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/enterUsername"
                             android:layout_marginLeft="20dp"
+                            android:maxLength="40"
                             android:layout_marginRight="20dp"
                             android:paddingTop="15dp"
                             android:inputType="textEmailAddress"/>
@@ -97,6 +108,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/enterPassword"
                             android:layout_marginLeft="20dp"
+                            android:maxLength="10"
                             android:layout_marginRight="20dp"
                             android:inputType="textPassword"
                             android:paddingTop="15dp" />
